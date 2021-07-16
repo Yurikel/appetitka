@@ -1,18 +1,18 @@
 const mongoose = require("mongoose");
 
-const adminSchema = mongoose.Schema({
+const applicationSchema = mongoose.Schema({
   isready: false,
   goods: [
     {
       good: {
-        type: Good.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Good",
       },
       amount: Number,
     },
   ],
   buyer: {
-    type: Agent.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "Agent",
   },
   regnumber: {
@@ -21,8 +21,5 @@ const adminSchema = mongoose.Schema({
   },
 });
 
-applicationSchema.statics.findLatestRegNumber = function () {
-  return this.find().sort({ regnumber: 1 }).limit(1);
-};
 
-module.exports = mongoose.model("Admin", adminSchema);
+module.exports = mongoose.model("Applications", applicationSchema);

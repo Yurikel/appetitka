@@ -1,8 +1,12 @@
 const Good = require("./models/good.model");
 const Admin = require("./models/admin.model");
 const Agent = require("./models/agent.model");
+const mongoose = require("mongoose");
+const { dbUrl, options } = require("./config");
 
 async function seedDatabase() {
+  await mongoose.connect(dbUrl, options);
+
   const adminsToSeed = [
     {
       login: "Anton",
@@ -61,9 +65,10 @@ async function seedDatabase() {
     },
   ];
 
-  (await Good.findOne({})) ? null : Good.insertMany(goodsToSeed);
-  (await Admin.findOne({})) ? null : Admin.insertMany(adminsToSeed);
-  (await Agent.findOne({})) ? null : Agent.insertMany(agentsToSeed);
+  await Good.insertMany(goodsToSeed);
+  await Admin.insertMany(adminsToSeed);
+  await Agent.insertMany(agentsToSeed);
+  await mongoose.disconnect();
 }
 
-module.exports = seedDatabase;
+seedDatabase();
