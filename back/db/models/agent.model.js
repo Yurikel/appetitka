@@ -7,8 +7,13 @@ const agentSchema = mongoose.Schema({
   },
   itn: { // ИНН
     type: Number, 
+    unique: true,
     required: true
   },
+  password: {
+    type: String,
+    required: true
+  }
   
 });
 
