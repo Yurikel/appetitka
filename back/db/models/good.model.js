@@ -4,6 +4,7 @@ const goodSchema = mongoose.Schema({
   title: {
     type: String,
     required: true,
+    trim: true,
   },
   price: {
     type: Number,
