@@ -1,11 +1,12 @@
 const router = require("express").Router();
 const Applications = require("../db/models/application.model")
+const Goods = require("../db/models/good.model")
 
 let number = 1
 
 router.get("/profile/:id", async(req, res)=>{
     const id = req.params.id;
-    const applications = await Applications.find({bayer:id})
+    const applications = await Applications.find({buyer:id})
     res.status(200).json({applications})
 })
 
@@ -23,7 +24,9 @@ router.post("/cart/:id", async(req, res)=>{
 })
 
 router.get("/goods", async(req, res)=>{
-    const goods = await Goods.find({});
+    console.log("something");
+    const goods = await Applications.find();
+    console.log(goods);
     res.status(200).json({goods})
 })
 

@@ -1,3 +1,4 @@
+import Goods from '../../Pages/Goods';
 import AdminGoodsList from '../AdminGoodsList/AdminGoodsList';
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -32,8 +33,15 @@ function App() {
         <Route path="/admin/agentReg">
           <RegNewAgent />
         </Route>
+
+        <Route path="/goods">
+          <Goods/>
+        </Route>
+       
+
         <Route path="/admin">
           <Admin />
+
         </Route>
 
        
