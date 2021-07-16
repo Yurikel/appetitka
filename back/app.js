@@ -13,7 +13,6 @@ const cors = require("cors");
 const app = express();
 connect();
 app.use(cors())
-seedDatabase();
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
