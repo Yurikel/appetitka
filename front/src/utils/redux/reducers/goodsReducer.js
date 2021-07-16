@@ -3,8 +3,9 @@ import { INIT_GOODS } from "../actionTypes";
 
 
 function goodsReducer(state = { goods: [] }, action) {
-    switch (action.payload) {
+    switch (action.type) {
       case INIT_GOODS:
+        console.log('in!')
             const newGoods = action.payload
           return {...state, goods: newGoods};
   

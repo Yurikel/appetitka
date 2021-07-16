@@ -4,19 +4,20 @@ import {initGoodsAC} from "../../utils/redux/actionCreators"
 import Good from '../Good/Good';
 
 export default function GoodsList() {
-    const goodsState = useSelector(state => state.goodsReducer);
+    const goodsState = useSelector(state => state.goodsReducer.goods);
+
     const dispatch = useDispatch();
     useEffect(()=>{
         fetch("http://localhost:4000/agent/goods")
         .then(res => res.json())
-        .then(data => console.log(data.goods))
-        // .then(data => dispatch(initGoodsAC(data.goods)))
-    }, [])
+        .then(data => dispatch(initGoodsAC(data)))
+        // .then(data => console.log(data))
+    }, [dispatch])
     console.log(goodsState);
     return (
         <div>
             dsdsada
-           {goodsState.goods.map(el => <Good key={el.name} el={el} />)}
+           {goodsState.map(el => <Good key={el.title} el={el} />)}
         </div>
     )
 }

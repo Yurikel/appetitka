@@ -10,7 +10,7 @@ function AdminGoodsList() {
   useEffect(() => {
     fetch('http://localhost:4000/admin/goodslist')
       .then(response => response.json())
-      .then(goods => dispatch(requestGoodsAC(goods)))
+      .then(goods => dispatch(requestGoodsAC(goods.goods)))
   }, [dispatch])
 
   return (

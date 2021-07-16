@@ -27,7 +27,6 @@ function App() {
           <ProfilePage />
         </Route>
         <Route path="/cart">{/* <CartPage /> */}</Route>
-        <Route path="/goods">{/* <GoodsPage /> */}</Route>
         <Route path="/login"><Login /></Route>
         <Route path="/logout">{/* <Home /> */}</Route>
         <Route path="/admin/agentReg">
