@@ -6,7 +6,7 @@ const dbUrl = 'mongodb://localhost:27017/final_project'
 
 const options = {
   useCreateIndex: true,
-  useFindAndModify: false,
+  useFindAndModify: true,
   useUnifiedTopology: true,
   useNewUrlParser: true,
 };
