@@ -1,3 +1,4 @@
+import AdminGoodsList from '../AdminGoodsList/AdminGoodsList';
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ProfilePage from "../../Pages/ProfilePage";
@@ -6,12 +7,21 @@ import Admin from "../Admin/Admin";
 import RegNewAgent from "../RegNewAgent/RegNewAgent";
 import Login from "../Login/Login";
 
+
 function App() {
   return (
     <Router>
       <Navbar />
       <Switch>
-        <Route path="/about">{/* <About /> */}</Route>
+
+        <Route path="/about">
+          {/* <About /> */}
+        </Route>
+        <Route path="/admin/goodslist">
+          <AdminGoodsList />
+        </Route>
+
+      
         <Route path="/profile">
           <ProfilePage />
         </Route>
@@ -26,7 +36,7 @@ function App() {
           <Admin />
         </Route>
 
-        <Route path="/admin/goodsList">{/* <Home /> */}</Route>
+       
         <Route path="/">{/* <Home /> */}</Route>
       </Switch>
     </Router>

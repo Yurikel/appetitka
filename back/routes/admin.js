@@ -1,5 +1,13 @@
 const router = require("express").Router();
-const Agents = require("../db/models/agent.model")
+const Agents = require("../db/models/agent.model");
+const Good = require("../db/models/good.model");
+
+
+router.get("/goodslist", async (req, res) => {
+  const goods = await Good.find({});
+  res.status(200).json({ goods });
+});
+
 
 
 router.post("/reg", async(req, res)=>{
@@ -19,6 +27,7 @@ router.post("/reg", async(req, res)=>{
     }
     
 })
+
 
 
 
