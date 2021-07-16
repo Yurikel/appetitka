@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route, } from "react-router-dom";
 import ProfilePage from '../../Pages/ProfilePage';
 import Navbar from '../Navbar/Navbar';
+import AdminGoodsList from '../AdminGoodsList/AdminGoodsList';
 
 function App() {
   return (
@@ -10,6 +11,9 @@ function App() {
       <Switch>
         <Route path="/about">
           {/* <About /> */}
+        </Route>
+        <Route path="/admin/goodslist">
+          <AdminGoodsList />
         </Route>
         <Route path="/profile">
           <ProfilePage />
