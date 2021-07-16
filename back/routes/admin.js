@@ -14,7 +14,8 @@ router.post("/reg", async(req, res)=>{
             "password":req.body.password
         });
         await newUser.save()
-        res.status(201).json({accept:true})
+        req.session.user = newUser
+        res.status(201).json({title: req.body.title, itn: itn})
     }
     
 })
