@@ -1,9 +1,10 @@
 import { combineReducers } from "redux";
-import reducerAgents from "./reducerAgents";
-
+import agentReducer from "./agentReducer";
+import adminReducer from "./adminReducer";
 
 const rootReducer = combineReducers({
-  agents: reducerAgents,
+  agentReducer,
+  adminReducer
 });
 
 export default rootReducer;
