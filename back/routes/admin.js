@@ -1,5 +1,13 @@
 const router = require("express").Router();
-const Agents = require("../db/models/agent.model")
+const Agents = require("../db/models/agent.model");
+const Good = require("../db/models/good.model");
+
+
+router.get("/goodslist", async (req, res) => {
+  const goods = await Good.find({});
+  res.status(200).json({ goods });
+});
+
 
 
 router.post("/reg", async(req, res)=>{
@@ -14,10 +22,12 @@ router.post("/reg", async(req, res)=>{
             "password":req.body.password
         });
         await newUser.save()
-        res.status(201).json({accept:true})
+        req.session.user = newUser
+        res.status(201).json({title: req.body.title, itn: itn})
     }
     
 })
+
 
 
 

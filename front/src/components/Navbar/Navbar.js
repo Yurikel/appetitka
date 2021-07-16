@@ -2,6 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Navbar() {
+  const handlerLogout = () => {
+    document.cookie = 'user=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    localStorage.clear()
+    document.location.href = '/'
+  }
   return (
     <nav>
       <ul>
@@ -15,7 +20,7 @@ export default function Navbar() {
           <Link to="/login">Login</Link>
         </li>
         <li>
-          <Link to="/logout">Logout</Link>
+          <Link to="#" onClick={handlerLogout}>Logout</Link>
         </li>
         <li>
           <Link to="/goods">Goods</Link>
@@ -25,6 +30,9 @@ export default function Navbar() {
         </li>
         <li>
           <Link to="/about">About</Link>
+        </li>
+        <li>
+          <Link to="/admin">Admin</Link>
         </li>
       </ul>
     </nav>
