@@ -13,7 +13,7 @@ export default function GoodsList() {
         .then(data => dispatch(initGoodsAC(data)))
         // .then(data => console.log(data))
     }, [dispatch])
-    console.log(goodsState)
+    // console.log(goodsState)
     return (
         <div>
            {goodsState.map(el => <Good key={el.title} el={el} />)}

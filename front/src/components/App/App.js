@@ -7,6 +7,7 @@ import Navbar from "../Navbar/Navbar";
 import Admin from "../Admin/Admin";
 import RegNewAgent from "../RegNewAgent/RegNewAgent";
 import Login from "../Login/Login";
+import Cart from "../../Pages/Cart";
 
 function App() {
 
@@ -22,7 +23,7 @@ function App() {
         <Route path="/profile">
           <ProfilePage />
         </Route>
-        <Route path="/cart">{/* <CartPage /> */}</Route>
+        <Route path="/cart"><Cart/></Route>
         <Route path="/login">
           <Login />
         </Route>
