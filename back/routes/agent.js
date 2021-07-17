@@ -24,9 +24,7 @@ router.post("/cart/:id", async(req, res)=>{
 })
 
 router.get("/goods", async(req, res)=>{
-    console.log("something");
     const goods = await Goods.find();
-    console.log(goods);
     res.status(200).json(goods)
 })
 

@@ -12,7 +12,7 @@ const FileStore = require('session-file-store')(session)
 
 
 const app = express();
-connect();
+connect()
 app.use(cors({
   origin: true,
   credentials: true,

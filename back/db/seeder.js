@@ -1,31 +1,31 @@
 const Good = require("./models/good.model");
-// const Admin = require("./models/admin.model");
-// const Agent = require("./models/agent.model");
+const Admin = require("./models/admin.model");
+const Agent = require("./models/agent.model");
 const mongoose = require("mongoose");
 const { dbUrl, options } = require("./config");
 
 async function seedDatabase() {
   await mongoose.connect(dbUrl, options);
 
-  // const adminsToSeed = [
-  //   {
-  //     login: "Anton",
-  //     password: "123",
-  //   },
-  // ];
+  const adminsToSeed = [
+    {
+      login: "Anton",
+      password: "123",
+    },
+  ];
 
-  // const agentsToSeed = [
-  //   {
-  //     title: 'ООО "Солнышко"',
-  //     itn: 49037285411,
-  //     password: "123",
-  //   },
-  //   {
-  //     title: 'ООО "Ромашка"',
-  //     itn: 37290571048,
-  //     password: "123",
-  //   },
-  // ];
+  const agentsToSeed = [
+    {
+      title: 'ООО "Солнышко"',
+      itn: 49037285411,
+      password: "123",
+    },
+    {
+      title: 'ООО "Ромашка"',
+      itn: 37290571048,
+      password: "123",
+    },
+  ];
 
   const goodsToSeed = [
     {

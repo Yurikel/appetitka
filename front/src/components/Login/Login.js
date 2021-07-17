@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 function Login() {
   const handlerSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
     const itn = event.target.itn.value;
     const password = event.target.password.value;
@@ -15,16 +15,18 @@ function Login() {
       credentials: "include",
       body: JSON.stringify({ itn, password }),
     });
-    const result = await preResult.json()
-    if(result.message) {
-      alert(result.message)
+    const result = await preResult.json();
+    if (result.admin) {
+      localStorage.setItem("admin", result.admin);
+      document.location.href = '/'
+    } else if (result.message) {
+      alert(result.message);
+    } else {
+      localStorage.setItem("itn", result.itn);
+      localStorage.setItem("title", result.title);
+      document.location.href = "/goods";
     }
-    else {
-      localStorage.setItem('itn', result.itn)
-      localStorage.setItem('title', result.title)
-      document.location.href='/goods'
-    }
-  }
+  };
   return (
     <div>
       <form onSubmit={handlerSubmit}>

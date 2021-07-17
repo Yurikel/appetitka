@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const adminSchema = mongoose.Schema({
   login: { 
-    type: String, 
+    type: Number, 
     required: true
   },
   password: { 
