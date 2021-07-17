@@ -18,7 +18,7 @@ function Login() {
     const result = await preResult.json();
     if (result.admin) {
       localStorage.setItem("admin", result.admin);
-      document.location.href = '/'
+      document.location.href = "/";
     } else if (result.message) {
       alert(result.message);
     } else {
@@ -27,16 +27,27 @@ function Login() {
       document.location.href = "/goods";
     }
   };
+
+  const digitsFilter = (event) => {
+    event.target.value = event.target.value
+      .replace(/[^0-9.]/g, "").replace(/(\..*?)\..*/g, "$1");
+  };
+
   return (
-    <div>
+    <div className="inputform">
       <form onSubmit={handlerSubmit}>
         <div>
           <label>ИНН:</label>
-          <input type="number" name="itn" />
+          <input
+            type="text"
+            name="itn"
+            className="expandedinput"
+            onInput={digitsFilter}
+          />
         </div>
-        <div className="mb-3">
+        <div>
           <label>Пароль:</label>
-          <input type="password" name="password" />
+          <input type="password" name="password" className="expandedinput" />
         </div>
         <div>
           <input type="submit" value="Зарегистрировать" />
