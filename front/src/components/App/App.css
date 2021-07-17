@@ -1,0 +1,11 @@
+.inputform {
+  width: 400px;
+}
+
+.expandedinput {
+  margin: 10px 0;
+}
+
+.inner > div {
+  margin: 15px 0;
+}
