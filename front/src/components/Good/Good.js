@@ -27,12 +27,14 @@ export default function Good({el}) {
     setValue(+inputGood.current.value + 1)
   }
     return (
-        <div style={{display:"flex"}}>
-            <h2>{el.title}</h2>
-            <p>{el.price}</p>
-            <button onClick={handlerMinus}>-</button>
-            <input ref={inputGood} type='number' onChange={handlerChange} value={value} />
-            <button onClick={handlerPlus}>+</button>
+        <div className="box goodsbox">
+            <h5>{el.title}</h5>
+            <p>Цена: ₽{el.price}</p>
+            <div>
+              <button onClick={handlerMinus} className="button primary">-</button>
+              <input ref={inputGood} type='number' onChange={handlerChange} value={value} />
+              <button onClick={handlerPlus} className="button primary">+</button>
+            </div>
             <button onClick={handlerAddToCart}>Добавить в корзину</button>
         </div>
     )

@@ -9,3 +9,37 @@
 .inner > div {
   margin: 15px 0;
 }
+
+.goodsbox {
+  background-color: #f5f6f7;
+  width: 300px;
+  height: 300px;
+  display: inline-block;
+  margin: 0 25px 25px 0;
+}
+
+.goodsbox > div {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.goodsbox > div input {
+  width: 100px;
+  height: 30px;
+}
+
+.goodsbox > div button {
+  padding: 0;
+  line-height: 0;
+  width: 50px;
+  height: 30px;
+}
+
+.image100 {
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+  /* border: 1px solid #555; */
+}
