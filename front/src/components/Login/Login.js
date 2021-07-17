@@ -30,8 +30,7 @@ function Login() {
 
   const digitsFilter = (event) => {
     event.target.value = event.target.value
-      .replace(/[^0-9.]/g, "")
-      .replace(/(\..*?)\..*/g, "$1");
+      .replace(/[^0-9.]/g, "").replace(/(\..*?)\..*/g, "$1");
   };
 
   return (
