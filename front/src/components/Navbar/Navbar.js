@@ -11,7 +11,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav>
+    <nav id='menu'>
       <ul>
         <li>
           <Link to="/">Home</Link>
