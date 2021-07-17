@@ -16,6 +16,9 @@ export default function Navbar() {
         <li>
           <Link to="/">Home</Link>
         </li>
+        {agent || admin ? null:  <li>
+              <Link to="/login">Login</Link>
+            </li> }
         {agent ? (
           <>
             <li>
@@ -33,11 +36,7 @@ export default function Navbar() {
               <Link to="/cart">Cart</Link>
             </li>
           </>
-        ) : (
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-        )}
+        ) : null}
 
         <li>
           <Link to="/about">About</Link>

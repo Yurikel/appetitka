@@ -8,6 +8,8 @@ import RegNewAgent from "../RegNewAgent/RegNewAgent";
 import Login from "../Login/Login";
 import Header from "./Header/Header"
 import SideBar from "./SideBar/SideBar"
+import Cart from "../../Pages/Cart";
+
 
 function App() {
 
@@ -30,7 +32,7 @@ function App() {
               <Route path="/profile">
                 <ProfilePage />
               </Route>
-              <Route path="/cart">{/* <CartPage /> */}</Route>
+             <Route path="/cart"><Cart/></Route>
               <Route path="/login">
                 <Login />
               </Route>
@@ -58,6 +60,7 @@ function App() {
 
       </Router>
     </div>
+
   );
 }
 
