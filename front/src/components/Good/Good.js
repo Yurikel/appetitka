@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import {
   addGoodsToCartAC,
   delGoodsFromCartAC,
@@ -9,6 +10,7 @@ import {
 export default function Good({ el }) {
   const dispatch = useDispatch();
   const goodsNumberInput = useRef();
+  const location = useLocation();
 
   const itemInCart = useSelector((state) =>
     state.agentReducer.cart.find((good) => good.title === el.title)
@@ -17,6 +19,11 @@ export default function Good({ el }) {
   const handlerAddToCart = () => {
     dispatch(addGoodsToCartAC({ title: el.title, value: 1 }));
   };
+
+  const handlerDeleteFromCart = () => {
+    dispatch(delGoodsFromCartAC(el.title));
+  };
+
   const handlerMinus = () => {
     if (+goodsNumberInput.current.value === 1) {
       dispatch(delGoodsFromCartAC(el.title));
@@ -51,29 +58,47 @@ export default function Good({ el }) {
   };
 
   return (
-    <div className="box goodsbox">
+    <div className="goodsbox">
       <div>
         <h5>{el.title}</h5>
+        <span>Цена: ₽{el.price || itemInCart.price}</span>
       </div>
-      <p>Цена: ₽{el.price}</p>
+      <div className="goodsboximage"></div>
       <div>
-        {itemInCart ? (
-          <>
-            <button onClick={handlerMinus} className="button primary plusminus">
-              -
+        <div className="inline">
+          {itemInCart ? (
+            <>
+              <button
+                onClick={handlerMinus}
+                className="button primary plusminus"
+              >
+                -
+              </button>
+              <input
+                onChange={handlerChange}
+                type="text"
+                value={itemInCart.value}
+                ref={goodsNumberInput}
+              />
+              <button
+                onClick={handlerPlus}
+                className="button primary plusminus"
+              >
+                +
+              </button>
+            </>
+          ) : (
+            <button onClick={handlerAddToCart} className="adddeletebutton">
+              Добавить в корзину
             </button>
-            <input
-              onChange={handlerChange}
-              type="text"
-              value={itemInCart.value}
-              ref={goodsNumberInput}
-            />
-            <button onClick={handlerPlus} className="button primary plusminus">
-              +
+          )}
+        </div>
+        {location.pathname === "/cart" && (
+          <div>
+            <button onClick={handlerDeleteFromCart} className="adddeletebutton">
+              Удалить из корзины
             </button>
-          </>
-        ) : (
-          <button onClick={handlerAddToCart}>Добавить в корзину</button>
+          </div>
         )}
       </div>
     </div>

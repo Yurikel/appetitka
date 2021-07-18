@@ -1,10 +1,11 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import CartGood from '../CartGood/CartGood'
+import Good from '../Good/Good'
 import { clearCartAC } from '../../utils/redux/actionCreators'
 
 export default function CartGoodsList() {
     let cart = useSelector(state => state.agentReducer.cart)
+    let goods = useSelector(state => state.goodsReducer.goods)
     const dispatch = useDispatch()
     
     function makeApplication(){
@@ -28,7 +29,7 @@ export default function CartGoodsList() {
             <button onClick={clearCart}>Отчистить корзину</button> </>: <div>Ваша корзина пуста</div>}
         </div>
         <div className="goodslist">
-          {cart.map(el => <CartGood key={el.title} el={el} />)}
+          {cart.map(el => <Good key={el.title} el={goods.find(good => good.title === el.title)} />)}
         </div>
         </>
     )
