@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation } from 'react-router-dom'
+import CartStatus from "../CartStatus/CartStatus";
 
 
 function Header() {
@@ -15,6 +16,8 @@ function Header() {
         {location.pathname === '/cart' && "Корзина"}
         {location.pathname === '/about' && "О компании"}
       </strong>
+
+      {location.pathname !== '/cart' && <CartStatus />}
 
       {/* <ul className="icons">
         <li>

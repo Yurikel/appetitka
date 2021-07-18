@@ -42,7 +42,7 @@ function Login() {
             type="text"
             name="itn"
             className="expandedinput"
-            onInput={digitsFilter}
+            c
           />
         </div>
         <div>

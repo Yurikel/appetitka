@@ -22,12 +22,14 @@ export default function CartGoodsList() {
     // cart.sort((prev, next) => prev.value - next.value ? 1 : -1)
     // console.log(cart);
     return (
-        <div>
-            
-            {cart.map(el => <CartGood key={el.title} el={el} />)}
+        <>
+        <div className="confirmresetbuttons">
             {cart.length ? <>  <button onClick={makeApplication}>Сформировать заявку</button>
             <button onClick={clearCart}>Отчистить корзину</button> </>: <div>Ваша корзина пуста</div>}
-            
         </div>
+        <div className="goodslist">
+          {cart.map(el => <CartGood key={el.title} el={el} />)}
+        </div>
+        </>
     )
 }
