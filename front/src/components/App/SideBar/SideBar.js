@@ -3,7 +3,7 @@ import Navbar from "../../Navbar/Navbar";
 
 function SideBar() {
   return (
-    <div id="sidebar" className="">
+    <div id="sidebar">
       <div className="inner">
         <header>
           <span className="left">
@@ -19,6 +19,10 @@ function SideBar() {
         </section> */}
 
         <Navbar />
+
+        {/* <header class="major">
+          <h3>Информация для связи</h3>
+        </header> */}
 
         <section>
           <ul className="contact">

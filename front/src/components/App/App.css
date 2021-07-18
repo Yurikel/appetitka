@@ -34,7 +34,7 @@
   flex-direction: column;
   margin: 0.2em 0;
 }
-.goodsbox > div > div{
+.goodsbox > div > div {
   margin: 0.2em 0;
 }
 
@@ -48,6 +48,7 @@
   background-color: #e7e7e7;
   width: 100%;
   height: 100%;
+  border-radius: 0.3em;
 }
 
 .plusminus {
@@ -76,6 +77,6 @@
 }
 
 .confirmresetbuttons button {
-  margin: 0 25px 25px 0;
+  margin: 0 1.2em 1.2em 0;
   width: 300px;
 }
