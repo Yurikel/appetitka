@@ -8,12 +8,14 @@ export default function GoodsList() {
   const dispatch = useDispatch();
   const goodsSearchField = useRef();
 
-  const [goodsListToDisplay, setGoodsListToDisplay] = useState(false);
+  const [goodsListToDisplay, setGoodsListToDisplay] = useState();
 
   const handleSeachGoods = () => {
     setGoodsListToDisplay(
       goodsState.filter((good) =>
-        good.title.includes(goodsSearchField.current.value)
+        good.title
+          .toLowerCase()
+          .includes(goodsSearchField.current.value.toLowerCase())
       )
     );
   };
