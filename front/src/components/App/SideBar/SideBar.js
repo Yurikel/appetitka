@@ -7,7 +7,7 @@ function SideBar() {
       <div className="inner">
         <header>
           <span className="left">
-            <img className="logo_sol" src="images/logo_sol1.png" alt="" />
+          <a href="/"><img className="logo_sol" src="/images/logo_sol1.png" alt="" /></a>
           </span>
           <h4>Торговая марка «Солёнушка»</h4>
           Система формирования заказов
