@@ -80,3 +80,12 @@
   margin: 0 1.2em 1.2em 0;
   width: 300px;
 }
+
+.searchfield input {
+  margin: 1em 0;
+  width: 34em;
+  transition:0.2s;
+}
+.searchfield input:focus {
+  width: 40em;
+}
