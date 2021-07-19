@@ -1,4 +1,5 @@
-const { INIT_AGENTS, REQUEST_GOODS, EDIT_GOODS, DELETE_GOODS } = require("../actionTypes");
+
+import { INIT_AGENTS, REQUEST_GOODS, EDIT_GOODS, DELETE_GOODS, INIT_APPLICATIONS} from "../actionTypes"
 
 function adminReducer(state = { agents: [] }, action) {
   switch (action.type) {
@@ -6,6 +7,8 @@ function adminReducer(state = { agents: [] }, action) {
       return { ...state, goodsList: action.payload };
     case INIT_AGENTS:
       return { ...state, agents: action.payload };
+    case INIT_APPLICATIONS:
+      return { ...state, applications: action.payload }
     case EDIT_GOODS:
       const editedGoodIndex = state.goodsList.findIndex(good => good._id === action.payload._id)
       return { ...state, goodsList: [
@@ -15,6 +18,7 @@ function adminReducer(state = { agents: [] }, action) {
       ]};
     case DELETE_GOODS:
       return { ...state, goodsList: state.goodsList.filter(good => good._id !== action.payload._id)};
+
     default:
       return state;
   }

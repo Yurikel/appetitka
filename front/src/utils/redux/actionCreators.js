@@ -6,6 +6,7 @@ import {
   INIT_GOODS,
   REQUEST_GOODS,
   ADJUST_CART,
+  INIT_APPLICATIONS,
   GET_CURRENT_USER,
   EDIT_GOODS,
   DELETE_GOODS,
@@ -43,4 +44,7 @@ export function clearCartAC(payload) {
 }
 export function adjustCartAC(payload) {
   return { type: ADJUST_CART, payload };
+}
+export function initApplicationsAC(payload){
+  return {type: INIT_APPLICATIONS, payload}
 }

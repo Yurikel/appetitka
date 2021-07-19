@@ -5,16 +5,31 @@ import { clearCartAC } from "../../utils/redux/actionCreators";
 import { getCookie } from 'react-use-cookie';
 
 export default function CartGoodsList() {
+  let user = useSelector((state) => state.agentReducer.currentUser);
   let cart = useSelector((state) => state.agentReducer.cart);
   let goods = useSelector((state) => state.goodsReducer.goods);
   const dispatch = useDispatch();
-  const user = getCookie('user')
-  console.log(user)
+  function totalCost(){
+    let result = 0;
+     cart.forEach(el =>{
+      let price = 0; 
+      for(let i=0; i<goods.length; i++){
+        if (goods[i].title == el.title){
+          price = +goods[i].price
+        }
+      }
+      result += price * el.value
+    })
+    return result;
+  }
+  
+   let total = totalCost();
   function makeApplication() {
-    fetch(`http://localhost:4000/agent/cart/${localStorage.getItem("itn")}`, {
+    // console.log(cart);
+    fetch(`http://localhost:4000/agent/cart/${user}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({}),
+      body: JSON.stringify({goods:cart}),
     })
       .then((res) => res.json())
       .then((data) => alert(data.message));

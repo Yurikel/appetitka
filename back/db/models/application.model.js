@@ -1,14 +1,15 @@
 const mongoose = require("mongoose");
 
 const applicationSchema = mongoose.Schema({
-  isready: false,
+  isready: {type:String, default:"В обработке"},
   goods: [
     {
+      title:String,
       good: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Good",
       },
-      amount: Number,
+      value: Number,
     },
   ],
   buyer: {
@@ -17,8 +18,8 @@ const applicationSchema = mongoose.Schema({
   },
   regnumber: {
     type: Number,
-    default: 0,
   },
+  date:{type: Date}
 });
 
 

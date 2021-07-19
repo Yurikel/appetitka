@@ -9,6 +9,7 @@ async function seedDatabase() {
 
   const adminsToSeed = [
     {
+
       login: "Admin",
       password: "123",
       isAdmin: true,
@@ -18,12 +19,12 @@ async function seedDatabase() {
   const agentsToSeed = [
     {
       title: 'ООО "Солнышко"',
-      itn: 49037285411,
+      itn: "49037285411",
       password: "123",
     },
     {
       title: 'ООО "Ромашка"',
-      itn: 37290571048,
+      itn: "37290571048",
       password: "123",
     },
   ];

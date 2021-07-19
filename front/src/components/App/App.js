@@ -13,6 +13,11 @@ import Login from "../Login/Login";
 import Header from "./Header/Header";
 import SideBar from "./SideBar/SideBar";
 import Cart from "../../Pages/Cart";
+import AdminApplicationList from "../AdminApplicationList/AdminApplicationList"
+import ApplicationInfo from "../ApplicationInfo/ApplicationInfo";
+import ApplicationEdit from "../ApplicationEditList/ApplicationEditList";
+
+
 import Registration from "../Registration/Registration";
 
 function App() {
@@ -36,7 +41,9 @@ function App() {
               <Route path="/admin/goodslist">
                 {admin ? <AdminGoodsList /> : <Redirect to="/" />}
               </Route>
-
+              <Route path="/admin/applicationlist">
+                <AdminApplicationList />
+              </Route>
               <Route path="/profile">
                 {agent ? <ProfilePage /> : <Redirect to="/" />}
               </Route>
@@ -55,7 +62,12 @@ function App() {
               <Route path="/admin">
                 {admin ? <Admin /> : <Redirect to="/" />}
               </Route>
-
+              <Route exact path="/admin/application/:id">
+                <ApplicationInfo />
+              </Route>
+              <Route path="/admin/application/edit/:id">
+                <ApplicationEdit />
+              </Route>
               <Route path="/">{/* <Home /> */}</Route>
             </Switch>
 
