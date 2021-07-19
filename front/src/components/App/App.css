@@ -80,3 +80,43 @@
   margin: 0 1.2em 1.2em 0;
   width: 300px;
 }
+
+.searchfield input {
+  margin: 1em 0;
+  width: 34em;
+  transition:0.2s;
+}
+
+.searchfield input:focus {
+  width: 40em;
+}
+
+.admingoodsbox {
+  /* height: 4em; */
+  width: 100%;
+  background-color: #f5f6f7;
+  margin: 1em 0;
+  padding: 1em;
+  border-radius: 0.5em;
+  display: flex;
+  /* border: 1px solid #e6e6e6; */
+}
+
+.admingoodsbox > div {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+}
+
+.admingoodsbox > div > button {
+  width: 20em;
+  margin: 0.5em;
+}
+
+.admingoodsbox > div > div{
+  background-color: #fff;
+  margin: 0.5em;
+  padding: 0.5em;
+  border-radius: 0.5em;
+}

@@ -7,6 +7,9 @@ import {
   REQUEST_GOODS,
   ADJUST_CART,
   GET_CURRENT_USER,
+  EDIT_GOODS,
+  DELETE_GOODS,
+
 } from "./actionTypes";
 
 export function initAgentsAC(payload) {
@@ -18,11 +21,19 @@ export function getCurrentUserAC(payload) {
 export function requestGoodsAC(payload) {
   return { type: REQUEST_GOODS, payload };
 }
-export function addGoodsToCartAC(payload) {
-  return { type: ADD_GOODS_TO_CART, payload };
-}
 export function initGoodsAC(payload) {
   return { type: INIT_GOODS, payload };
+}
+export function editGoodsListAC(payload) {
+  return { type: EDIT_GOODS, payload };
+}
+export function deleteGoodsAC(payload) {
+  return { type: DELETE_GOODS, payload };
+}
+
+
+export function addGoodsToCartAC(payload) {
+  return { type: ADD_GOODS_TO_CART, payload };
 }
 export function delGoodsFromCartAC(payload) {
   return { type: DEL_FROM_CART, payload };
