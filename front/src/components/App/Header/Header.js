@@ -1,12 +1,25 @@
 import React from "react";
+import { useLocation } from 'react-router-dom'
+import CartStatus from "../CartStatus/CartStatus";
+
 
 function Header() {
+
+  const location = useLocation()
+
   return (
     <header id="header">
-      <a href="index.html" className="logo">
-        <strong>Заголовок</strong> страницы
-      </a>
-      <ul className="icons">
+      
+      <strong>
+        {location.pathname === '/profile' && "Профиль"}
+        {location.pathname === '/goods' && "Каталог товаров"}
+        {location.pathname === '/cart' && "Корзина"}
+        {location.pathname === '/about' && "О компании"}
+      </strong>
+
+      {location.pathname !== '/cart' && <CartStatus />}
+
+      {/* <ul className="icons">
         <li>
           <a href="/" className="icon brands fa-twitter">
             <span className="label">Twitter</span>
@@ -32,7 +45,7 @@ function Header() {
             <span className="label">Medium</span>
           </a>
         </li>
-      </ul>
+      </ul> */}
     </header>
   );
 }

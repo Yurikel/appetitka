@@ -9,8 +9,9 @@ async function seedDatabase() {
 
   const adminsToSeed = [
     {
-      login: "Anton",
+      login: "Admin",
       password: "123",
+      isAdmin: true,
     },
   ];
 
@@ -545,8 +546,8 @@ async function seedDatabase() {
     },
   ];
 
-  await Good.insertMany(goodsToSeed);
-  // await Admin.insertMany(adminsToSeed);
+  // await Good.insertMany(goodsToSeed);
+  await Admin.insertMany(adminsToSeed);
   // await Agent.insertMany(agentsToSeed);
   await mongoose.disconnect();
 }
