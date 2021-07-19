@@ -7,12 +7,27 @@ export default function CartGoodsList() {
   let cart = useSelector((state) => state.agentReducer.cart);
   let goods = useSelector((state) => state.goodsReducer.goods);
   const dispatch = useDispatch();
-
+  function totalCost(){
+    let result = 0;
+     cart.forEach(el =>{
+      let price = 0; 
+      for(let i=0; i<goods.length; i++){
+        if (goods[i].title == el.title){
+          price = +goods[i].price
+        }
+      }
+      result += price * el.value
+    })
+    return result;
+  }
+  
+   let total = totalCost();
   function makeApplication() {
+    // console.log(cart);
     fetch(`http://localhost:4000/agent/cart/${localStorage.getItem("itn")}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({}),
+      body: JSON.stringify({goods:cart}),
     })
       .then((res) => res.json())
       .then((data) => alert(data.message));
@@ -21,14 +36,22 @@ export default function CartGoodsList() {
   const clearCart = () => {
     dispatch(clearCartAC(""));
   };
-  // console.log(cart);
-  // cart.sort((prev, next) => prev.value - next.value ? 1 : -1)
-  // console.log(cart);
+  
   return (
-    <>
+    <> 
+    <p> Конечная цена = {total} </p>
+    <div className="goodslist">
+    {cart.map((el) => (
+      <Good
+        key={el.title}
+        el={goods.find((good) => good.title === el.title)}
+      />
+    ))}
+  </div>
       <div className="confirmresetbuttons">
         {cart.length ? (
           <>
+          <div style={{width:"100%", borderTop:"5px solid #f56a6a", paddingTop:"10px"}}>
             {" "}
             <button onClick={makeApplication} className="button primary">
               Сформировать заявку
@@ -36,19 +59,13 @@ export default function CartGoodsList() {
             <button onClick={clearCart} className="button primary">
               Отчистить корзину
             </button>{" "}
+            </div>
           </>
         ) : (
           <div>Ваша корзина пуста</div>
         )}
       </div>
-      <div className="goodslist">
-        {cart.map((el) => (
-          <Good
-            key={el.title}
-            el={goods.find((good) => good.title === el.title)}
-          />
-        ))}
-      </div>
+      
     </>
   );
 }

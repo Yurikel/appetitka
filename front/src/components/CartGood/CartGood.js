@@ -34,9 +34,9 @@ export default function CartGood({el}) {
               <button onClick={handlerMinus} className="button primary plusminus">-</button>
               <input ref={inputGood} type='number' onChange={handlerChange} value={value} />
               <button onClick={handlerPlus} className="button primary plusminus">+</button>
-            {/* </div>
+            </div>
             <button onClick={handlerDellFromCart}>удалить из корзины</button>
-          </div> */}
+          </div>
         </div>
     )
 }
