@@ -4,7 +4,7 @@ function Login() {
   const handlerSubmit = async (event) => {
     event.preventDefault();
 
-    const itn = event.target.itn.value;
+    const login = event.target.login.value;
     const password = event.target.password.value;
 
     const preResult = await fetch("http://localhost:4000/login", {
@@ -13,18 +13,16 @@ function Login() {
         "Content-Type": "application/json",
       },
       credentials: "include",
-      body: JSON.stringify({ itn, password }),
+      body: JSON.stringify({ login, password }),
     });
     const result = await preResult.json();
     if (result.admin) {
-      localStorage.setItem("admin", result.admin);
+      document.cookie='admin=admin'
       document.location.href = "/";
     } else if (result.message) {
       alert(result.message);
     } else {
-      localStorage.setItem("itn", result.itn);
-      localStorage.setItem("title", result.title);
-      document.location.href = "/goods";
+      document.location.href = "/profile";
     }
   };
 
@@ -37,12 +35,11 @@ function Login() {
     <div className="inputform">
       <form onSubmit={handlerSubmit}>
         <div>
-          <label>ИНН:</label>
+          <label>Логин:</label>
           <input
             type="text"
-            name="itn"
+            name="login"
             className="expandedinput"
-            c
           />
         </div>
         <div>
@@ -50,7 +47,7 @@ function Login() {
           <input type="password" name="password" className="expandedinput" />
         </div>
         <div>
-          <input type="submit" value="Зарегистрировать" />
+          <input type="submit" value="Войти" />
         </div>
       </form>
     </div>

@@ -7,12 +7,16 @@ const agentRoute = require("./routes/agent");
 const cors = require("cors");
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
-const FileStore = require('session-file-store')(session)
+// const FileStore = require('session-file-store')(session)
+const MongoStore = require('connect-mongo');
+const morgan = require('morgan')
+const sessionCheck = require('./middlewares/sessionCheck')
 
 
 
 const app = express();
 connect()
+app.use(morgan('dev'))
 app.use(cors({
   origin: true,
   credentials: true,
@@ -23,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(session({
-  store: new FileStore(),
+  store: MongoStore.create({mongoUrl: 'mongodb://localhost:27017/final_project'}),
   key: 'user',
   secret: 'anything',
   resave: false,
@@ -31,11 +35,13 @@ app.use(session({
   cookie: {
     expires: 24 * 100 * 60 * 1000,
     httpOnly: false,
-  }
+  },
+  unset: 'destroy'
 }))
 
+
 app.use("/", mainRote);
-app.use("/admin",adminRote);
+app.use("/admin", sessionCheck, adminRote);
 app.use("/agent", agentRoute);
 
 

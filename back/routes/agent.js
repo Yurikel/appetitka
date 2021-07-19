@@ -31,6 +31,14 @@ router.get("/goods", async(req, res)=>{
     res.status(200).json(goods)
 })
 
+router.get('/getUserInfo', (req, res) => {
+  const user = req.session.user
+  if(user){
+    res.json(user.login)
+  }
+  else res.end()
+})
+
 
 
 

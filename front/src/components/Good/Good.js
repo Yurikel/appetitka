@@ -68,18 +68,18 @@ export default function Good({ el }) {
         <div className="inline">
           {itemInCart ? (
             <>
-              <button
-                onClick={handlerMinus}
-                className="button primary plusminus"
-              >
-                -
-              </button>
               <input
                 onChange={handlerChange}
                 type="text"
                 value={itemInCart.value}
                 ref={goodsNumberInput}
               />
+              <button
+                onClick={handlerMinus}
+                className="button primary plusminus middlebutton"
+              >
+                -
+              </button>
               <button
                 onClick={handlerPlus}
                 className="button primary plusminus"

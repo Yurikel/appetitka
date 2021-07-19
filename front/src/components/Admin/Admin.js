@@ -15,7 +15,6 @@ function Admin() {
   }, [dispatch])
   return (
     <div>
-     <div><Link to='/admin/agentReg'>Регистрация нового агента</Link></div> 
      <div><Link to='/admin/goodsList' >Список товаров</Link></div>
       <Link to='/admin/applicationList' >Список заявок</Link>
     </div>

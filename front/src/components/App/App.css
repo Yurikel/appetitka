@@ -13,7 +13,7 @@
 .goodslist {
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: space-between; */
+  justify-content: flex-start;
 }
 
 .goodsbox {
@@ -34,14 +34,18 @@
   flex-direction: column;
   margin: 0.2em 0;
 }
+
 .goodsbox > div > div {
   margin: 0.2em 0;
 }
 
 .goodsbox > div input {
-  margin: 0 1em;
   width: 100%;
   height: 30px;
+}
+
+.middlebutton {
+  margin: 0 0.5em;
 }
 
 .goodsboximage {
@@ -72,11 +76,67 @@
   height: 30%;
 }
 
-.confirmresetbuttons {
+.confirmblock {
+  /* min-height: 100%; */
   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.confirmresetbuttons button {
-  margin: 0 1.2em 1.2em 0;
+.confirmblock button {
+  margin: 0.6em 0 0 0;
   width: 300px;
+}
+
+.searchfield input {
+  margin: 1em 0;
+  width: 34em;
+  transition: 0.2s;
+}
+
+.searchfield input:focus {
+  width: 40em;
+}
+
+.admingoodsbox {
+  /* height: 4em; */
+  width: 100%;
+  background-color: #f5f6f7;
+  margin: 1em 0;
+  padding: 1em;
+  border-radius: 0.5em;
+  display: flex;
+  /* border: 1px solid #e6e6e6; */
+}
+
+.admingoodsbox > div {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+}
+
+.admingoodsbox > div > button {
+  width: 20em;
+  margin: 0.5em;
+}
+
+.admingoodsbox > div > div {
+  background-color: #fff;
+  margin: 0.5em;
+  padding: 0.5em;
+  border-radius: 0.5em;
+}
+
+textarea {
+  /* border: 1px solid #ccc; */
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0.4em;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  resize: vertical;
+  min-height: 10em;
+  line-height: 20px;
 }

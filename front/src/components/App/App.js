@@ -1,58 +1,66 @@
 import Goods from "../../Pages/Goods";
 import AdminGoodsList from "../AdminGoodsList/AdminGoodsList";
 import "./App.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import ProfilePage from "../../Pages/ProfilePage";
 import Admin from "../Admin/Admin";
-import RegNewAgent from "../RegNewAgent/RegNewAgent";
 import Login from "../Login/Login";
-import Header from "./Header/Header"
-import SideBar from "./SideBar/SideBar"
+import Header from "./Header/Header";
+import SideBar from "./SideBar/SideBar";
 import Cart from "../../Pages/Cart";
 import AdminApplicationList from "../AdminApplicationList/AdminApplicationList"
 import ApplicationInfo from "../ApplicationInfo/ApplicationInfo";
 import ApplicationEdit from "../ApplicationEditList/ApplicationEditList";
 
 
+import Registration from "../Registration/Registration";
 
 function App() {
+  const admin = document.cookie.includes("admin");
+  const agent = document.cookie.includes("user");
 
   return (
     <div id="wrapper">
       <Router>
         <div id="main">
           <div className="inner">
-
             <Header />
 
             {/* ROUTES CONTENT AREA */}
 
             <Switch>
               <Route path="/about">{/* <About /> */}</Route>
+              <Route path="/registration">
+                <Registration />
+              </Route>
               <Route path="/admin/goodslist">
-                <AdminGoodsList />
+                {admin ? <AdminGoodsList /> : <Redirect to="/" />}
               </Route>
               <Route path="/admin/applicationlist">
                 <AdminApplicationList />
               </Route>
               <Route path="/profile">
-                <ProfilePage />
+                {agent ? <ProfilePage /> : <Redirect to="/" />}
               </Route>
-              <Route path="/cart"><Cart /></Route>
+              <Route path="/cart">
+                {agent ? <Cart /> : <Redirect to="/" />}
+              </Route>
               <Route path="/login">
-                <Login />
+                {agent || admin ? <Redirect to="/" /> : <Login />}
               </Route>
               <Route path="/logout">{/* <Home /> */}</Route>
-              <Route path="/admin/agentReg">
-                <RegNewAgent />
-              </Route>
 
               <Route path="/goods">
-                <Goods />
+                {agent ? <Goods /> : <Redirect to="/" />}
               </Route>
 
-              <Route exact path="/admin">
-                <Admin />
+              <Route path="/admin">
+                {admin ? <Admin /> : <Redirect to="/" />}
               </Route>
               <Route exact path="/admin/application/:id">
                 <ApplicationInfo />
@@ -68,10 +76,8 @@ function App() {
         </div>
 
         <SideBar />
-
       </Router>
     </div>
-
   );
 }
 

@@ -3,7 +3,6 @@ const Agents = require("../db/models/agent.model");
 const Good = require("../db/models/good.model");
 const Applications = require("../db/models/application.model")
 
-
 router.get("/goodslist", async (req, res) => {
     const goods = await Good.find({});
     res.status(200).json({ goods });
@@ -44,6 +43,48 @@ router.post("/reg", async (req, res) => {
 
 
 
+router.put("/goodslist", async (req, res) => {
+  const { _id, title, price, stock } = req.body;
+  const goodToEdit = await Good.findOne({ _id });
+  if (goodToEdit) {
+    goodToEdit.title = title;
+    goodToEdit.price = price;
+    goodToEdit.stock = stock;
+    await goodToEdit.save();
+    res.status(201).json(goodToEdit);
+  } else {
+    res.status(404).json({message: "Good not found!"});
+  }
 
+});
+
+router.delete("/goodslist", async (req, res) => {
+  const { _id } = req.body;
+  const goodToDelete = await Good.findOneAndDelete ({ _id });
+  if (goodToDelete) {
+    res.status(201).json(goodToDelete);
+  } else {
+    res.status(404).json({message: "Good not found!"});
+  }
+});
+
+router.post("/reg", async (req, res) => {
+  const itn = req.body.itn;
+  const isUser = await Agents.findOne({ itn: itn });
+  if (isUser) {
+    res
+      .send(409)
+      .json({ message: "Пользователь с таким ИНН уже зарегистрирован" });
+  } else {
+    const newUser = new Agents({
+      title: req.body.title,
+      itn: itn,
+      password: req.body.password,
+    });
+    await newUser.save();
+    req.session.user = newUser;
+    res.status(201).json({ title: req.body.title, itn: itn });
+  }
+});
 
 module.exports = router;
