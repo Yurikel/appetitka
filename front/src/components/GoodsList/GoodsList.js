@@ -8,7 +8,7 @@ export default function GoodsList() {
   const dispatch = useDispatch();
   const goodsSearchField = useRef();
 
-  const [goodsListToDisplay, setGoodsListToDisplay] = useState(goodsState);
+  const [goodsListToDisplay, setGoodsListToDisplay] = useState(false);
 
   const handleSeachGoods = () => {
     setGoodsListToDisplay(
@@ -27,19 +27,19 @@ export default function GoodsList() {
   return (
     <>
       <div className="searchfield">
-            <input
-              type="search"
-              autocomplete="off"
-              ref={goodsSearchField}
-              id="query"
-              placeholder="поиск товара по названию..."
-              onChange={handleSeachGoods}
-            />
+        <input
+          type="search"
+          autocomplete="off"
+          ref={goodsSearchField}
+          id="query"
+          placeholder="поиск товара по названию..."
+          onChange={handleSeachGoods}
+        />
       </div>
       <div className="goodslist">
-        {goodsListToDisplay.map((el) => (
-          <Good key={el.title} el={el} />
-        ))}
+        {goodsListToDisplay
+          ? goodsListToDisplay.map((el) => <Good key={el.title} el={el} />)
+          : goodsState.map((el) => <Good key={el.title} el={el} />)}
       </div>
     </>
   );
