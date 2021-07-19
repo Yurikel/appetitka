@@ -12,9 +12,13 @@ router.get("/applications", async (req, res) => {
     const applications = await Applications.find({});
     res.status(200).json({ applications });
 });
+router.put("/application/:id", async (req, res) => {
+    await Applications.findOneAndUpdate({regnumber:req.params.id}, { $set: {isready: "Готовится к отгрузке"}});
+    res.status(200).json({ message: `Заявка № ${req.params.id} отправлена на склад`});
+});
 router.get("/agents", async (req, res) => {
     const agents = await Agents.find({});
-    res.status(200).json({ agents });
+    res.status(200).json({agents});
 });
 
 router.post("/reg", async (req, res) => {

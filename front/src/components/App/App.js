@@ -11,6 +11,10 @@ import SideBar from "./SideBar/SideBar"
 import Cart from "../../Pages/Cart";
 import AdminApplicationList from "../AdminApplicationList/AdminApplicationList"
 import ApplicationInfo from "../ApplicationInfo/ApplicationInfo";
+import ApplicationEdit from "../ApplicationEditList/ApplicationEditList";
+
+
+
 function App() {
 
   return (
@@ -50,8 +54,11 @@ function App() {
               <Route exact path="/admin">
                 <Admin />
               </Route>
-              <Route path="/admin/application/:id">
+              <Route exact path="/admin/application/:id">
                 <ApplicationInfo />
+              </Route>
+              <Route path="/admin/application/edit/:id">
+                <ApplicationEdit />
               </Route>
               <Route path="/">{/* <Home /> */}</Route>
             </Switch>

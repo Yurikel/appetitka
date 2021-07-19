@@ -4,6 +4,7 @@ import Good from "../Good/Good";
 import { clearCartAC } from "../../utils/redux/actionCreators";
 
 export default function CartGoodsList() {
+  let user = useSelector((state) => state.agentReducer.currentUser);
   let cart = useSelector((state) => state.agentReducer.cart);
   let goods = useSelector((state) => state.goodsReducer.goods);
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ export default function CartGoodsList() {
    let total = totalCost();
   function makeApplication() {
     // console.log(cart);
-    fetch(`http://localhost:4000/agent/cart/${localStorage.getItem("itn")}`, {
+    fetch(`http://localhost:4000/agent/cart/${user}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({goods:cart}),
