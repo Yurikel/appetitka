@@ -6,6 +6,7 @@ import {
   INIT_GOODS,
   REQUEST_GOODS,
   ADJUST_CART,
+  INIT_APPLICATIONS,
 } from "./actionTypes";
 
 export function initAgentsAC(payload) {
@@ -28,4 +29,7 @@ export function clearCartAC(payload) {
 }
 export function adjustCartAC(payload) {
   return { type: ADJUST_CART, payload };
+}
+export function initApplicationsAC(payload){
+  return {type: INIT_APPLICATIONS, payload}
 }

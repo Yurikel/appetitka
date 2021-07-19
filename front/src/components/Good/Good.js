@@ -17,7 +17,7 @@ export default function Good({ el }) {
   );
 
   const handlerAddToCart = () => {
-    dispatch(addGoodsToCartAC({ title: el.title, value: 1 }));
+    dispatch(addGoodsToCartAC({ title: el.title, value: 1,  good:el._id}));
   };
 
   const handlerDeleteFromCart = () => {
@@ -52,7 +52,7 @@ export default function Good({ el }) {
       dispatch(delGoodsFromCartAC(el.title));
     } else {
       dispatch(
-        adjustCartAC({ title: el.title, value: goodsNumberInput.current.value })
+        adjustCartAC({ title: el.title, value: goodsNumberInput.current.value, good:el._id})
       );
     }
   };

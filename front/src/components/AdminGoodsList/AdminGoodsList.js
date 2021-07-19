@@ -5,13 +5,13 @@ import { requestGoodsAC } from '../../utils/redux/actionCreators';
 function AdminGoodsList() {
 
   const goodsList = useSelector((state) => state.adminReducer.goodsList);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    fetch('http://localhost:4000/admin/goodslist')
-      .then(response => response.json())
-      .then(goods => dispatch(requestGoodsAC(goods.goods)))
-  }, [dispatch])
+  // useEffect(() => {
+  //   fetch('http://localhost:4000/admin/goodslist')
+  //     .then(response => response.json())
+  //     .then(goods => dispatch(requestGoodsAC(goods.goods)))
+  // }, [dispatch])
 
   return (
     <div>

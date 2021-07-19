@@ -9,8 +9,8 @@ import Login from "../Login/Login";
 import Header from "./Header/Header"
 import SideBar from "./SideBar/SideBar"
 import Cart from "../../Pages/Cart";
-
-
+import AdminApplicationList from "../AdminApplicationList/AdminApplicationList"
+import ApplicationInfo from "../ApplicationInfo/ApplicationInfo";
 function App() {
 
   return (
@@ -28,11 +28,13 @@ function App() {
               <Route path="/admin/goodslist">
                 <AdminGoodsList />
               </Route>
-
+              <Route path="/admin/applicationlist">
+                <AdminApplicationList />
+              </Route>
               <Route path="/profile">
                 <ProfilePage />
               </Route>
-             <Route path="/cart"><Cart/></Route>
+              <Route path="/cart"><Cart /></Route>
               <Route path="/login">
                 <Login />
               </Route>
@@ -45,10 +47,12 @@ function App() {
                 <Goods />
               </Route>
 
-              <Route path="/admin">
+              <Route exact path="/admin">
                 <Admin />
               </Route>
-
+              <Route path="/admin/application/:id">
+                <ApplicationInfo />
+              </Route>
               <Route path="/">{/* <Home /> */}</Route>
             </Switch>
 
@@ -56,7 +60,7 @@ function App() {
           </div>
         </div>
 
-      <SideBar />
+        <SideBar />
 
       </Router>
     </div>
