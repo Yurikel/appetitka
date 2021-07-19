@@ -81,6 +81,15 @@
   width: 300px;
 }
 
+.searchfield input {
+  margin: 1em 0;
+  width: 34em;
+  transition:0.2s;
+}
+
+.searchfield input:focus {
+  width: 40em;
+
 .admingoodsbox {
   /* height: 4em; */
   width: 100%;
