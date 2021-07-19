@@ -1,8 +1,7 @@
 const dotenv = require("dotenv");
 dotenv.config();
 
-// const dbUrl = process.env.dbUrl;
-const dbUrl = 'mongodb://localhost:27017/final_project'
+const dbUrl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.eqypr.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
 
 const options = {
   useCreateIndex: true,
