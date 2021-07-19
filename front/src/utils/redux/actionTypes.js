@@ -4,3 +4,4 @@ export const INIT_GOODS = 'INIT_GOODS'
 export const REQUEST_GOODS = 'REQUEST_GOODS'
 export const DEL_FROM_CART = "DEL_FROM_CART"
 export const CLEAR_CART = "CLEAR_CART"
+export const ADJUST_CART = "ADJUST_CART"

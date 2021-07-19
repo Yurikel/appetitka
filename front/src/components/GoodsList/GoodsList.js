@@ -15,7 +15,7 @@ export default function GoodsList() {
     }, [dispatch])
     // console.log(goodsState)
     return (
-        <div>
+        <div className="goodslist">
            {goodsState.map(el => <Good key={el.title} el={el} />)}
         </div>
     )

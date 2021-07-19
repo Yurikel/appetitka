@@ -6,7 +6,7 @@ const agentSchema = mongoose.Schema({
     required: true
   },
   itn: { // ИНН
-    type: Number, 
+    type: String, 
     unique: true,
     required: true
   },

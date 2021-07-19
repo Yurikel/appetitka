@@ -1,4 +1,4 @@
-import { CLEAR_CART, ADD_GOODS_TO_CART, DEL_FROM_CART } from "../actionTypes";
+import { CLEAR_CART, ADD_GOODS_TO_CART, DEL_FROM_CART, ADJUST_CART } from "../actionTypes";
 
 function agentReducer(state = { cart: [] }, action) {
   switch (action.type) {
@@ -27,6 +27,13 @@ function agentReducer(state = { cart: [] }, action) {
           } else return false
         })
       }
+    case ADJUST_CART:
+      const adjIndex = state.cart.findIndex(el => el.title === action.payload.title)
+      return {...state, cart: [
+        ...state.cart.slice(0, adjIndex),
+        {...state.cart[adjIndex], value: action.payload.value},
+        ...state.cart.slice(adjIndex + 1)
+      ]}
     case CLEAR_CART:
       return { ...state, cart: [] }
     default:

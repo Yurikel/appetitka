@@ -11,45 +11,43 @@ export default function Navbar() {
   };
 
   return (
-    <nav id='menu'>
+    <nav id="menu">
       <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        {agent || admin ? null:  <li>
-              <Link to="/login">Login</Link>
-            </li> }
+        {/* <li><Link to="/">Home</Link></li> */}
+        {agent || admin ? null : (
+          <li>
+            <Link to="/login">Вход в систему</Link>
+          </li>
+        )}
         {agent ? (
           <>
             <li>
-              <Link to="/profile">Profile</Link>
+              <Link to="/profile">Профиль</Link>
+            </li>
+            <li>
+              <Link to="/goods">Каталог товаров</Link>
+            </li>
+            <li>
+              <Link to="/cart">Корзина</Link>
             </li>
             <li>
               <Link to="#" onClick={handlerLogout}>
-                Logout
+                Выход из системы
               </Link>
-            </li>
-            <li>
-              <Link to="/goods">Goods</Link>
-            </li>
-            <li>
-              <Link to="/cart">Cart</Link>
             </li>
           </>
         ) : null}
 
-        <li>
-          <Link to="/about">About</Link>
-        </li>
+        {/* <li><Link to="/about">About</Link></li> */}
         {admin ? (
           <>
             <li>
-              <Link to="/admin">Admin</Link>
+              <Link to="/admin">Админ</Link>
             </li>
 
             <li>
               <Link to="#" onClick={handlerLogout}>
-                Logout
+                Выход из системы
               </Link>
             </li>
           </>
