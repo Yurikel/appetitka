@@ -59,7 +59,7 @@ function App() {
                 {agent ? <Goods /> : <Redirect to="/" />}
               </Route>
 
-              <Route path="/admin">
+              <Route exact path="/admin">
                 {admin ? <Admin /> : <Redirect to="/" />}
               </Route>
               <Route exact path="/admin/application/:id">

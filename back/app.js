@@ -7,10 +7,8 @@ const agentRoute = require("./routes/agent");
 const cors = require("cors");
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
-// const FileStore = require('session-file-store')(session)
 const MongoStore = require('connect-mongo');
 const morgan = require('morgan')
-const sessionCheck = require('./middlewares/sessionCheck')
 
 
 
@@ -41,7 +39,7 @@ app.use(session({
 
 
 app.use("/", mainRote);
-app.use("/admin", sessionCheck, adminRote);
+app.use("/admin", adminRote);
 app.use("/agent", agentRoute);
 
 

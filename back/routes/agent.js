@@ -12,12 +12,12 @@ router.get("/profile/:id", async(req, res)=>{
 })
 
 router.post("/cart/:id", async(req, res)=>{
-    const itn = req.params.id;
-    const agent = await Agents.findOne({"itn": itn})
+    const login = req.params.id;
+    const agent = await Agents.findOne({login: login})
     // console.log(req.body.goods);
     const current_application = new Applications ({
         goods:req.body.goods,
-        buyer: agent.id,
+        buyer: agent._id,
         regnumber: number,
         date: new Date(),
     })

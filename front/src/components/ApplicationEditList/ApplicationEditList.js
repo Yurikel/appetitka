@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import AdminApplicationView from '../AdminApplicationView/AdminApplicationView'
 import ApplicationEdit from '../ApplicationEdit/ApplicationEdit'
 
-export default function ApplicationEdit() {
+export default function ApplicationEditList() {
     const {id} = useParams();
     const applications = useSelector((state) => state.adminReducer.applications);
     const application = applications.filter(el => el.regnumber==id)[0]

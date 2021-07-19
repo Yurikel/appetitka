@@ -1,7 +1,7 @@
 
 import { INIT_AGENTS, REQUEST_GOODS, EDIT_GOODS, DELETE_GOODS, INIT_APPLICATIONS} from "../actionTypes"
 
-function adminReducer(state = { agents: [] }, action) {
+function adminReducer(state = { agents: [], applications: [], goodsList: [] }, action) {
   switch (action.type) {
     case REQUEST_GOODS:
       return { ...state, goodsList: action.payload };

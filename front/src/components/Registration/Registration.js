@@ -36,7 +36,7 @@ function Registration() {
       <form onSubmit={handlerSubmit}>
         <div>
           <label>Название организации:</label>
-          <input type="text" name="title" />
+          <input required type="text" name="title" />
         </div>
         <div>
           <label>ИНН:</label>
