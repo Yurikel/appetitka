@@ -20,29 +20,16 @@ export default function CartGoodsList() {
       .then((data) => alert(data.message));
     dispatch(clearCartAC(""));
   }
+
   const clearCart = () => {
     dispatch(clearCartAC(""));
   };
-  // console.log(cart);
-  // cart.sort((prev, next) => prev.value - next.value ? 1 : -1)
-  // console.log(cart);
+
+  // const calculateTotal = () => {
+  // };
+
   return (
-    <>
-      <div className="confirmresetbuttons">
-        {cart.length ? (
-          <>
-            {" "}
-            <button onClick={makeApplication} className="button primary">
-              Сформировать заявку
-            </button>
-            <button onClick={clearCart} className="button primary active">
-              Отчистить корзину
-            </button>{" "}
-          </>
-        ) : (
-          <div>Ваша корзина пуста</div>
-        )}
-      </div>
+    <div className="inline">
       <div className="goodslist">
         {cart.map((el) => (
           <Good
@@ -51,6 +38,23 @@ export default function CartGoodsList() {
           />
         ))}
       </div>
-    </>
+      <div className="confirmblock">
+        {cart.length ? (
+          <>
+            <h4>Ориентировочная стоимость заказа:</h4>
+            <h2>100 ₽</h2>
+            <textarea placeholder="Комментарий к заказу..."></textarea>
+            <button onClick={makeApplication} className="button primary">
+              Сформировать заявку
+            </button>
+            <button onClick={clearCart} className="button primary active">
+              Очистить корзину
+            </button>
+          </>
+        ) : (
+          <div>Ваша корзина пуста</div>
+        )}
+      </div>
+    </div>
   );
 }
