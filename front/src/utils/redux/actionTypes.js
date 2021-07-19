@@ -5,3 +5,4 @@ export const REQUEST_GOODS = 'REQUEST_GOODS'
 export const DEL_FROM_CART = "DEL_FROM_CART"
 export const CLEAR_CART = "CLEAR_CART"
 export const ADJUST_CART = "ADJUST_CART"
+export const GET_CURRENT_USER = "GET_CURRENT_USER"

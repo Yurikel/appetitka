@@ -6,10 +6,14 @@ import {
   INIT_GOODS,
   REQUEST_GOODS,
   ADJUST_CART,
+  GET_CURRENT_USER,
 } from "./actionTypes";
 
 export function initAgentsAC(payload) {
   return { type: INIT_AGENTS, payload };
+}
+export function getCurrentUserAC(payload) {
+  return { type: GET_CURRENT_USER, payload };
 }
 export function requestGoodsAC(payload) {
   return { type: REQUEST_GOODS, payload };
