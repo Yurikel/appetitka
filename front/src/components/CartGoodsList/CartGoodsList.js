@@ -2,12 +2,14 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Good from "../Good/Good";
 import { clearCartAC } from "../../utils/redux/actionCreators";
+import { getCookie } from 'react-use-cookie';
 
 export default function CartGoodsList() {
   let cart = useSelector((state) => state.agentReducer.cart);
   let goods = useSelector((state) => state.goodsReducer.goods);
   const dispatch = useDispatch();
-
+  const user = getCookie('user')
+  console.log(user)
   function makeApplication() {
     fetch(`http://localhost:4000/agent/cart/${localStorage.getItem("itn")}`, {
       method: "POST",

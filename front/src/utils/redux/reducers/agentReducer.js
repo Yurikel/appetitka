@@ -1,41 +1,60 @@
-import { CLEAR_CART, ADD_GOODS_TO_CART, DEL_FROM_CART, ADJUST_CART } from "../actionTypes";
+import {
+  CLEAR_CART,
+  ADD_GOODS_TO_CART,
+  DEL_FROM_CART,
+  ADJUST_CART,
+  GET_CURRENT_USER,
+} from "../actionTypes";
 
-function agentReducer(state = { cart: [] }, action) {
+function agentReducer(state = { cart: [], currentUser: "" }, action) {
   switch (action.type) {
     case ADD_GOODS_TO_CART:
-      const index = state.cart.findIndex(el => el.title === action.payload.title)
+      const index = state.cart.findIndex(
+        (el) => el.title === action.payload.title
+      );
       if (index !== -1 && state.cart[index].value === action.payload.value) {
-        return state
+        return state;
       }
       if (index !== -1) {
         return {
-          ...state, cart: state.cart.map(el => {
+          ...state,
+          cart: state.cart.map((el) => {
             if (el.title === action.payload.title) {
-              return { title: action.payload.title, value: action.payload.value }
-            } else return el
-          })
-        }
-      }
-      else {
-        return { ...state, cart: [...state.cart, action.payload] }
+              return {
+                title: action.payload.title,
+                value: action.payload.value,
+              };
+            } else return el;
+          }),
+        };
+      } else {
+        return { ...state, cart: [...state.cart, action.payload] };
       }
     case DEL_FROM_CART:
       return {
-        ...state, cart: state.cart.filter(el => {
+        ...state,
+        cart: state.cart.filter((el) => {
           if (el.title !== action.payload) {
-            return true
-          } else return false
-        })
-      }
+            return true;
+          } else return false;
+        }),
+      };
     case ADJUST_CART:
-      const adjIndex = state.cart.findIndex(el => el.title === action.payload.title)
-      return {...state, cart: [
-        ...state.cart.slice(0, adjIndex),
-        {...state.cart[adjIndex], value: action.payload.value},
-        ...state.cart.slice(adjIndex + 1)
-      ]}
+      const adjIndex = state.cart.findIndex(
+        (el) => el.title === action.payload.title
+      );
+      return {
+        ...state,
+        cart: [
+          ...state.cart.slice(0, adjIndex),
+          { ...state.cart[adjIndex], value: action.payload.value },
+          ...state.cart.slice(adjIndex + 1),
+        ],
+      };
     case CLEAR_CART:
-      return { ...state, cart: [] }
+      return { ...state, cart: [] };
+    case GET_CURRENT_USER:
+      return { ...state, currentUser: action.payload };
     default:
       return state;
   }
