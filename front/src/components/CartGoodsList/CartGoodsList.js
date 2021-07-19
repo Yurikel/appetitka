@@ -33,7 +33,7 @@ export default function CartGoodsList() {
             <button onClick={makeApplication} className="button primary">
               Сформировать заявку
             </button>
-            <button onClick={clearCart} className="button primary">
+            <button onClick={clearCart} className="button primary active">
               Отчистить корзину
             </button>{" "}
           </>
