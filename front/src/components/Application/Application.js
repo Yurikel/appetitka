@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Application({el}) {
     const agents = useSelector(state => state.adminReducer.agents)
     const buyer = agents.filter(agent => agent._id === el.buyer)[0]
-    console.log(buyer)
+    // console.log(buyer)
     const date = new Date(el.date)
 
     return (
