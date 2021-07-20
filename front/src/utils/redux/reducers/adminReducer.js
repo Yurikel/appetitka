@@ -1,5 +1,5 @@
 
-import { INIT_AGENTS, REQUEST_GOODS, EDIT_GOODS, DELETE_GOODS, INIT_APPLICATIONS} from "../actionTypes"
+import { CHANGE_QUANTITY_GOOD, DELETE_FROM_APPLICATION, INIT_AGENTS, REQUEST_GOODS, EDIT_GOODS, DELETE_GOODS, INIT_APPLICATIONS, DELETE_APPLICATION} from "../actionTypes"
 
 function adminReducer(state = { agents: [], applications: [], goodsList: [] }, action) {
   switch (action.type) {
@@ -18,8 +18,18 @@ function adminReducer(state = { agents: [], applications: [], goodsList: [] }, a
       ]};
     case DELETE_GOODS:
       return { ...state, goodsList: state.goodsList.filter(good => good._id !== action.payload._id)};
-
-    default:
+    case DELETE_FROM_APPLICATION:
+      const application = state.applications.find(el => el.regnumber == action.payload.regnumber);
+      const newgoods = application.goods.filter(el => el.title !==action.payload.goodTitle)
+      application["goods"]= newgoods;
+      return {...state, applications:[...state.applications.filter(app => app.regnumber !== action.payload.regnumber), application]}
+      case CHANGE_QUANTITY_GOOD:
+        const needApplication = state.applications.find(el => el.regnumber == action.payload.regnumber);
+        const index = state.applications.findIndex(el => el.regnumber == action.payload.regnumber)
+        const needgood = needApplication.goods.find(el => el.title == action.payload.goodTitle)
+        needgood.value = action.payload.value
+        return {...state, applications:[...state.applications.slice(0, index),needApplication,...state.applications.slice(index+1)]}
+      default:
       return state;
   }
 }

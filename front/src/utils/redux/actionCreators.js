@@ -11,6 +11,8 @@ import {
   EDIT_GOODS,
   DELETE_GOODS,
   INIT_AGENT_APPLICATIONS,
+  DELETE_FROM_APPLICATION,
+  CHANGE_QUANTITY_GOOD,
 
 } from "./actionTypes";
 
@@ -51,5 +53,10 @@ export function initApplicationsAC(payload){
 }
 export function initAgentApplicationsAC(payload){
   return {type: INIT_AGENT_APPLICATIONS, payload}
-
+}
+export function deleteFromApplicationAC(payload){
+  return {type: DELETE_FROM_APPLICATION, payload}
+}
+export function changeQuantityGoodAC(payload){
+  return {type: CHANGE_QUANTITY_GOOD, payload}
 }
