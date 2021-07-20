@@ -2,14 +2,17 @@ const Good = require("./models/good.model");
 const Admin = require("./models/admin.model");
 const Agent = require("./models/agent.model");
 const mongoose = require("mongoose");
-const { dbUrl, options } = require("./config");
+const { options } = require('./config');
+const dotenv = require("dotenv");
+dotenv.config({path: '../.env'}); // Important!
+const dbUrl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.eqypr.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
 
 async function seedDatabase() {
-  await mongoose.connect(dbUrl, options);
+  console.log(process.env, dbUrl)
+  await mongoose.connect(dbUrl);
 
   const adminsToSeed = [
     {
-
       login: "Admin",
       password: "123",
       isAdmin: true,
@@ -18,13 +21,11 @@ async function seedDatabase() {
 
   const agentsToSeed = [
     {
-      title: 'ООО "Солнышко"',
+      title: "Алёнка",
+      login: "Anton",
+      phone: "+7924344499",
+      email: "Anton@Mail.ro",
       itn: "49037285411",
-      password: "123",
-    },
-    {
-      title: 'ООО "Ромашка"',
-      itn: "37290571048",
       password: "123",
     },
   ];
@@ -547,9 +548,10 @@ async function seedDatabase() {
     },
   ];
 
-  // await Good.insertMany(goodsToSeed);
-  await Admin.insertMany(adminsToSeed);
+  await Good.insertMany(goodsToSeed);
+  // await Admin.insertMany(adminsToSeed);
   // await Agent.insertMany(agentsToSeed);
+
   await mongoose.disconnect();
 }
 
