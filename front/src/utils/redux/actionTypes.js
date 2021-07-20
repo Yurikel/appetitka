@@ -4,7 +4,7 @@ export const INIT_GOODS = 'INIT_GOODS'
 export const REQUEST_GOODS = 'REQUEST_GOODS'
 export const EDIT_GOODS = 'EDIT_GOODS'
 export const DELETE_GOODS = 'DELETE_GOODS'
-
+export const DELETE_FROM_APPLICATION = 'DELETE_FROM_APPLICATION'
 // agent
 export const ADD_GOODS_TO_CART = 'ADD_GOODS_TO_CART'
 export const DEL_FROM_CART = "DEL_FROM_CART"

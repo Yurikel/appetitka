@@ -10,6 +10,7 @@ import {
   GET_CURRENT_USER,
   EDIT_GOODS,
   DELETE_GOODS,
+  DELETE_FROM_APPLICATION,
 
 } from "./actionTypes";
 
@@ -47,4 +48,7 @@ export function adjustCartAC(payload) {
 }
 export function initApplicationsAC(payload){
   return {type: INIT_APPLICATIONS, payload}
+}
+export function deleteFromApplicationAC(payload){
+  return {type: DELETE_FROM_APPLICATION, payload}
 }

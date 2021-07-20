@@ -1,5 +1,5 @@
 
-import { INIT_AGENTS, REQUEST_GOODS, EDIT_GOODS, DELETE_GOODS, INIT_APPLICATIONS} from "../actionTypes"
+import { DELETE_FROM_APPLICATION, INIT_AGENTS, REQUEST_GOODS, EDIT_GOODS, DELETE_GOODS, INIT_APPLICATIONS} from "../actionTypes"
 
 function adminReducer(state = { agents: [], applications: [], goodsList: [] }, action) {
   switch (action.type) {
@@ -18,7 +18,15 @@ function adminReducer(state = { agents: [], applications: [], goodsList: [] }, a
       ]};
     case DELETE_GOODS:
       return { ...state, goodsList: state.goodsList.filter(good => good._id !== action.payload._id)};
-
+    case DELETE_FROM_APPLICATION:
+      const application = state.applications.find(el => el.regnumber == action.payload.regnumber);
+      console.log(application);
+      const newgoods = application.goods.filter(el => el.title !==action.payload.goodTitle)
+      // console.log(application["goods"]);
+      application["goods"]= newgoods;
+      // const constApplications = {...state, applications: [...state.applications.filter(app => app.regnumber !== action.payload.regnumber), application]}
+      // console.log(constApplications);
+      return {...state, applications:[...state.applications.filter(app => app.regnumber !== action.payload.regnumber), application]}
     default:
       return state;
   }
