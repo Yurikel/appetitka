@@ -9,20 +9,22 @@ async function seedDatabase() {
 
   const adminsToSeed = [
     {
-      login: "Anton",
+
+      login: "Admin",
       password: "123",
+      isAdmin: true,
     },
   ];
 
   const agentsToSeed = [
     {
       title: 'ООО "Солнышко"',
-      itn: 49037285411,
+      itn: "49037285411",
       password: "123",
     },
     {
       title: 'ООО "Ромашка"',
-      itn: 37290571048,
+      itn: "37290571048",
       password: "123",
     },
   ];
@@ -545,8 +547,8 @@ async function seedDatabase() {
     },
   ];
 
-  await Good.insertMany(goodsToSeed);
-  // await Admin.insertMany(adminsToSeed);
+  // await Good.insertMany(goodsToSeed);
+  await Admin.insertMany(adminsToSeed);
   // await Agent.insertMany(agentsToSeed);
   await mongoose.disconnect();
 }

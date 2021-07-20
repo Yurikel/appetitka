@@ -1,22 +1,49 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import {initGoodsAC} from "../../utils/redux/actionCreators"
-import Good from '../Good/Good';
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { initGoodsAC } from "../../utils/redux/actionCreators";
+import Good from "../Good/Good";
 
 export default function GoodsList() {
-    const goodsState = useSelector(state => state.goodsReducer.goods);
+  const goodsState = useSelector((state) => state.goodsReducer.goods);
+  const dispatch = useDispatch();
+  const goodsSearchField = useRef();
 
-    const dispatch = useDispatch();
-    useEffect(()=>{
-        fetch("http://localhost:4000/agent/goods")
-        .then(res => res.json())
-        .then(data => dispatch(initGoodsAC(data)))
-        // .then(data => console.log(data))
-    }, [dispatch])
-    // console.log(goodsState)
-    return (
-        <div>
-           {goodsState.map(el => <Good key={el.title} el={el} />)}
-        </div>
-    )
+  const [goodsListToDisplay, setGoodsListToDisplay] = useState();
+
+  const handleSeachGoods = () => {
+    setGoodsListToDisplay(
+      goodsState.filter((good) =>
+        good.title
+          .toLowerCase()
+          .includes(goodsSearchField.current.value.toLowerCase())
+      )
+    );
+  };
+
+  useEffect(() => {
+    fetch("http://localhost:4000/agent/goods")
+      .then((res) => res.json())
+      .then((data) => dispatch(initGoodsAC(data)));
+  }, [dispatch]);
+
+  return (
+    <>
+      <div className="searchfield">
+        <input
+          type="search"
+          autocomplete="off"
+          ref={goodsSearchField}
+          id="query"
+          placeholder="поиск товара по названию..."
+          onChange={handleSeachGoods}
+        />
+      </div>
+      <div className="goodslist">
+        {goodsListToDisplay
+          ? goodsListToDisplay.map((el) => <Good key={el.title} el={el} />)
+          : goodsState.map((el) => <Good key={el.title} el={el} />)}
+      </div>
+    </>
+
+  );
 }

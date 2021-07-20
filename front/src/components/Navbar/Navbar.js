@@ -1,55 +1,72 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { getCurrentUserAC } from "../../utils/redux/actionCreators";
 
 export default function Navbar() {
-  const admin = localStorage.getItem("admin");
-  const agent = localStorage.getItem("itn");
+  const admin = document.cookie.includes('admin')
+  const agent = document.cookie.includes('user')
+  const dispatch = useDispatch()
+  useEffect(() => {
+    (async () => {
+      const preResult = await fetch('http://localhost:4000/agent/getUserInfo', {
+        credentials: 'include',
+      })
+      const result = await preResult.json()
+      dispatch(getCurrentUserAC(result))
+    })()
+  })
+  
   const handlerLogout = () => {
+    fetch('http://localhost:4000/logout')
     document.cookie = "user=;expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-    localStorage.clear();
+    document.cookie = "admin=;expires=Thu, 01 Jan 1970 00:00:01 GMT;";
     document.location.href = "/";
   };
 
   return (
-    <nav id='menu'>
+    <nav id="menu">
       <ul>
-        <li>
-          <Link to="/">Home</Link>
+        {/* <li><Link to="/">Home</Link></li> */}
+        {agent || admin ? null : (
+          <>
+          <li>
+            <Link to="/login">Вход в систему</Link>
+          </li>
+          <li>
+          <Link to="/registration">Регистрация</Link>
         </li>
-        {agent || admin ? null:  <li>
-              <Link to="/login">Login</Link>
-            </li> }
-        {agent ? (
+        </>
+        )}
+        {agent && !admin ? (
           <>
             <li>
-              <Link to="/profile">Profile</Link>
+              <Link to="/profile">Профиль</Link>
+            </li>
+            <li>
+              <Link to="/goods">Каталог товаров</Link>
+            </li>
+            <li>
+              <Link to="/cart">Корзина</Link>
             </li>
             <li>
               <Link to="#" onClick={handlerLogout}>
-                Logout
+                Выход из системы
               </Link>
-            </li>
-            <li>
-              <Link to="/goods">Goods</Link>
-            </li>
-            <li>
-              <Link to="/cart">Cart</Link>
             </li>
           </>
         ) : null}
 
-        <li>
-          <Link to="/about">About</Link>
-        </li>
+        {/* <li><Link to="/about">About</Link></li> */}
         {admin ? (
           <>
             <li>
-              <Link to="/admin">Admin</Link>
+              <Link to="/admin">Админ</Link>
             </li>
 
             <li>
               <Link to="#" onClick={handlerLogout}>
-                Logout
+                Выход из системы
               </Link>
             </li>
           </>

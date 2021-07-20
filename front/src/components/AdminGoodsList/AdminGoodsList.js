@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { requestGoodsAC } from '../../utils/redux/actionCreators';
+import AdminGood from '../AdminGood/AdminGood';
 
 function AdminGoodsList() {
 
@@ -15,9 +16,7 @@ function AdminGoodsList() {
 
   return (
     <div>
-      
-      {goodsList ? goodsList[0].title : null}
-      
+      {goodsList && goodsList.map(el => <AdminGood key={el.title} el={el} />)}
     </div>
   );
 }

@@ -1,10 +1,12 @@
 import React from 'react'
 
 export default function Profile() {
+  const company = localStorage.getItem("title");
+  const itn = localStorage.getItem("itn");
   return (
     <div>
-      Компания: Название компании
-      ИНН: 456465456465
+      <b>Компания:</b> {company}<br/>
+      <b>ИНН:</b> {itn}
     </div>
   )
 }

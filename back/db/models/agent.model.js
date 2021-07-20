@@ -1,13 +1,25 @@
 const mongoose = require("mongoose");
 
 const agentSchema = mongoose.Schema({
-  title: { // проверка на 
+  title: { 
     type: String, 
     required: true
   },
   itn: { // ИНН
-    type: Number, 
+    type: String, 
+    required: true
+  },
+  login: {
+    type: String,
     unique: true,
+    required: true
+  },
+  phone: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
     required: true
   },
   password: {

@@ -3,7 +3,7 @@ const Applications = require("../db/models/application.model")
 const Goods = require("../db/models/good.model")
 const Agents = require("../db/models/agent.model")
 
-let number = 1
+let number = 1;
 
 router.get("/profile/:id", async(req, res)=>{
     const id = req.params.id;
@@ -12,12 +12,13 @@ router.get("/profile/:id", async(req, res)=>{
 })
 
 router.post("/cart/:id", async(req, res)=>{
-    const itn = req.params.id;
-    const agent = await Agents.findOne({"itn": itn})
+    const login = req.params.id;
+    const agent = await Agents.findOne({login: login})
+    // console.log(req.body.goods);
     const current_application = new Applications ({
         goods:req.body.goods,
-        buyer: agent.id,
-        regNumber: number,
+        buyer: agent._id,
+        regnumber: number,
         date: new Date(),
     })
     number +=1;
@@ -28,6 +29,14 @@ router.post("/cart/:id", async(req, res)=>{
 router.get("/goods", async(req, res)=>{
     const goods = await Goods.find().sort({title: 1});
     res.status(200).json(goods)
+})
+
+router.get('/getUserInfo', (req, res) => {
+  const user = req.session.user
+  if(user){
+    res.json(user.login)
+  }
+  else res.end()
 })
 
 
