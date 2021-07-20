@@ -42,11 +42,12 @@ export default function GoodsEditByAdmin({el}) {
     
     return (
         <>
-            <h2>{el.title}</h2>
+        {itemInCart ?<> <h2>{el.title}</h2>
             <input ref={goodValue} onChange={handlerChangeValue} type="number" value={itemInCart.value} />
               <button onClick={handlerDecreaseGoods} className="button primary plusminus middlebutton">-</button>
               <button onClick={handlerIncreaseGoods} className="button primary plusminus"> +</button>
-            <button onClick={handlerDeleteFromApplication} className="adddeletebutton">Удалить из заявки</button>
+            <button onClick={handlerDeleteFromApplication} className="adddeletebutton">Удалить из заявки</button> </>:<></>}
+            
         </>
     )
 }
