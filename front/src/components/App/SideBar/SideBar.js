@@ -5,13 +5,10 @@ function SideBar() {
   return (
     <div id="sidebar">
       <div className="inner">
-        <header>
-          <span className="left">
-          <a href="/"><img className="logo_sol" src="/images/logo_sol1.png" alt="" /></a>
-          </span>
+        <div>
+          <a href="/"><img src="/images/logo_sol1.png" alt="" /></a>
           <h4>Торговая марка «Солёнушка»</h4>
-          Система формирования заказов
-        </header>
+          <div className="subtitle">Система формирования заказов</div>
         {/* <section id="search" className="alt">
           <form method="post" action="#">
             <input type="text" name="query" id="query" placeholder="Search" />
@@ -19,12 +16,13 @@ function SideBar() {
         </section> */}
 
         <Navbar />
+        </div>
 
         {/* <header class="major">
           <h3>Информация для связи</h3>
         </header> */}
-
-        <section>
+        <div>
+        <section className="sidecontacts">
           <ul className="contact">
             <li className="icon solid fa-envelope">
               <a href="/">info@solenushka.ru</a>
@@ -41,6 +39,7 @@ function SideBar() {
             </li>
           </ul>
         </section>
+        </div>
 
         {/* <footer id="footer">
           <p className="copyright">
