@@ -1,8 +1,22 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { delGoodsFromCartAC } from '../../utils/redux/actionCreators'
+import { delGoodsFromCartAC, initAgentsAC, initApplicationsAC, requestGoodsAC } from '../../utils/redux/actionCreators'
 
 export default function CartGood({el}) {
+
+    // const dispatch = useDispatch();
+    // useEffect(() => {
+    //       console.log("something");
+    //       fetch('http://localhost:4000/admin/applications')
+    //       .then(response => response.json())
+    //       .then(applications => dispatch(initApplicationsAC(applications.applications)))
+    //       fetch('http://localhost:4000/admin/agents')
+    //         .then(response => response.json())
+    //         .then(agents => dispatch(initAgentsAC(agents.agents)))
+    //         fetch('http://localhost:4000/admin/goodslist')
+    //         .then(response => response.json())
+    //         .then(goods => dispatch(requestGoodsAC(goods.goods)))
+    //   }, [dispatch])
   // const inputGood = useRef()
   // const handlerChange = () => {
   //   if(inputGood.current.value < 0){

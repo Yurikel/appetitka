@@ -1,0 +1,21 @@
+{
+  "name": "appetitka",
+  "version": "1.0.0",
+  "description": "appetit",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd front && npm i && npm build",
+    "start": "cd back && npm i && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yurikel/appetitka.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yurikel/appetitka/issues"
+  },
+  "homepage": "https://github.com/Yurikel/appetitka#readme"
+}

@@ -8,7 +8,7 @@ router.get("/goodslist", async (req, res) => {
     res.status(200).json({ goods });
 });
 router.get("/applications", async (req, res) => {
-    const applications = await Applications.find({});
+    const applications = await Applications.find({}).populate('goods.good').populate('buyer')
     res.status(200).json({ applications });
 });
 router.put("/application/:id", async (req, res) => {

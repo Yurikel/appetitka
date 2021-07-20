@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from 'react-router-dom'
+import { initAgentsAC, initApplicationsAC, requestGoodsAC } from "../../../utils/redux/actionCreators";
 import CartStatus from "../CartStatus/CartStatus";
 
 
 function Header() {
-
+  const adminState = useSelector(state => state.adminReducer)
   const location = useLocation()
-
+  const adminCookie = document.cookie.includes("admin")
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if(adminCookie){
+      console.log("something");
+      fetch('http://localhost:4000/admin/applications')
+      .then(response => response.json())
+      .then(applications => dispatch(initApplicationsAC(applications.applications)))
+      fetch('http://localhost:4000/admin/agents')
+        .then(response => response.json())
+        .then(agents => dispatch(initAgentsAC(agents.agents)))
+        fetch('http://localhost:4000/admin/goodslist')
+        .then(response => response.json())
+        .then(goods => dispatch(requestGoodsAC(goods.goods)))
+    }
+  }, [dispatch])
   return (
     <header id="header">
       
