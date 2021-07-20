@@ -20,7 +20,7 @@ app.use(cors({
   credentials: true,
 }));
 app.use(cookieParser())
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.resolve('../front/build/')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
