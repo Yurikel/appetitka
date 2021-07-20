@@ -7,15 +7,20 @@ export default function ApplicationEdit() {
     const {id} = useParams();
     const applications = useSelector(state => state.adminReducer.applications)
     const application = applications.find(el => el.regnumber==id)
-    const aplicationGoods = application.goods
-    const goods = useSelector((state) => state.adminReducer.goodsList)
+    let aplicationGoods
     let result = [];
+    const goods = useSelector((state) => state.adminReducer.goodsList)
+    if (application){
+    aplicationGoods = application.goods
     aplicationGoods.forEach(el => {
         let preresult = goods.find(good => good._id == el["good"])
         result.push({...preresult, value: el["value"]})
-    })
+    })}
+    
+    
+    
     // const dispatch = useDispatch();
-    console.log("aaa", aplicationGoods);
+    // console.log("aaa", aplicationGoods);
     const handlerDeleteApp = ()=>{
         fetch(`http://localhost:4000/admin/application/${id}`, {method:"delete"})
     }
@@ -29,10 +34,13 @@ export default function ApplicationEdit() {
         })
     }
     return (
-        <div>
+        <>
+        { application ? <div>
            {result.map(el => <GoodsEditByAdmin key={el.title} el={el} />)}
            <Link to="/admin/applicationlist"><button onClick = {handlerDeleteApp}>Удалить заявку</button></Link>
            <Link to="/admin/applicationlist"><button onClick = {handlerSubmitApp}>Подвердить заявку</button></Link>
-        </div>
+        </div> : <p>Nothing to show</p>}
+        
+        </>
     )
 }
