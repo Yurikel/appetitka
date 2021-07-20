@@ -1,29 +1,21 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { initAgentApplicationsAC } from '../../utils/redux/actionCreators';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import ApplicationProfile from '../ApplicationProfile/ApplicationProfile';
 
 export default function Profile() {
   const company = localStorage.getItem("title");
   const itn = localStorage.getItem("itn");
 
-  const agentState = useSelector(state => state.agentReducer.currentUser)
-  const applicationsState = useSelector(state => state.agentReducer.applications.applications)
 
-  console.log(applicationsState);
-
-  const dispatch = useDispatch()
-  useEffect(() => {
-    fetch(`http://localhost:4000/agent/profile/${agentState}`)
-    .then(res => res.json())
-    .then(data => dispatch(initAgentApplicationsAC(data)))
-  },[dispatch])
+  const applicationsState = useSelector(state => state.agentReducer.applications.applications);
 
   return (
     <div>
-      <b>Компания:</b> {company}<br/>
+      <b>Компания:</b> {company}<br />
       <b>ИНН:</b> {itn}
-      {applicationsState.map(el => <div>123</div>)}
+      {applicationsState ?
+        applicationsState.map(el => <ApplicationProfile key={el._id} el={el} />) : 'заявок нет'}
     </div>
-  )
+  );
 }
 

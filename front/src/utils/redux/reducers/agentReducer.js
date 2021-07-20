@@ -57,6 +57,7 @@ function agentReducer(state = { cart: [], currentUser: "", applications: [] }, a
     case GET_CURRENT_USER:
       return { ...state, currentUser: action.payload };
       case INIT_AGENT_APPLICATIONS:
+        console.log('init')
         return {...state, applications: action.payload}
     default:
       return state;

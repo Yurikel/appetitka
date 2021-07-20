@@ -7,10 +7,12 @@ let number = 1;
 
 router.get("/profile/:id", async (req, res) => {
   const login = req.params.id;
+  console.log(login);
   const buyerID = await Agents.findOne({ login });
-  const applications = await Applications.find({ buyer: buyerID._id })
-  console.log(applications);
-  res.status(200).json({ applications });
+  console.log(buyerID);
+  const applications = await Applications.find({ buyer: buyerID._id }).populate('goods.good').populate('buyer')
+  console.log(applications)
+  res.status(200).json( {applications} );
 });
 
 router.post("/cart/:id", async (req, res) => {

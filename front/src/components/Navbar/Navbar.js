@@ -1,24 +1,29 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getCurrentUserAC } from "../../utils/redux/actionCreators";
+import { getCurrentUserAC, initAgentApplicationsAC } from "../../utils/redux/actionCreators";
 
 export default function Navbar() {
-  const admin = document.cookie.includes('admin')
-  const agent = document.cookie.includes('user')
-  const dispatch = useDispatch()
+  const admin = document.cookie.includes('admin');
+  const agent = document.cookie.includes('user');
+  const dispatch = useDispatch();
+
   useEffect(() => {
     (async () => {
       const preResult = await fetch('http://localhost:4000/agent/getUserInfo', {
         credentials: 'include',
-      })
-      const result = await preResult.json()
-      dispatch(getCurrentUserAC(result))
-    })()
-  })
-  
+      });
+      const result = await preResult.json();
+      dispatch(getCurrentUserAC(result));
+
+      const responce = await fetch(`http://localhost:4000/agent/profile/${result}`);
+      const resultApp = await responce.json();
+      dispatch(initAgentApplicationsAC(resultApp))
+    })();
+  });
+
   const handlerLogout = () => {
-    fetch('http://localhost:4000/logout')
+    fetch('http://localhost:4000/logout');
     document.cookie = "user=;expires=Thu, 01 Jan 1970 00:00:01 GMT;";
     document.cookie = "admin=;expires=Thu, 01 Jan 1970 00:00:01 GMT;";
     document.location.href = "/";
@@ -30,13 +35,13 @@ export default function Navbar() {
         {/* <li><Link to="/">Home</Link></li> */}
         {agent || admin ? null : (
           <>
-          <li>
-            <Link to="/login">Вход в систему</Link>
-          </li>
-          <li>
-          <Link to="/registration">Регистрация</Link>
-        </li>
-        </>
+            <li>
+              <Link to="/login">Вход в систему</Link>
+            </li>
+            <li>
+              <Link to="/registration">Регистрация</Link>
+            </li>
+          </>
         )}
         {agent && !admin ? (
           <>
