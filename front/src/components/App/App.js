@@ -15,10 +15,10 @@ import SideBar from "./SideBar/SideBar";
 import Cart from "../../Pages/Cart";
 import AdminApplicationList from "../AdminApplicationList/AdminApplicationList"
 import ApplicationInfo from "../ApplicationInfo/ApplicationInfo";
-import ApplicationEdit from "../ApplicationEditList/ApplicationEditList";
-
-
+import ApplicationEdit from "../ApplicationEdit/ApplicationEdit";
 import Registration from "../Registration/Registration";
+import Home from "../Home/Home";
+import Success from "../Success/Success";
 
 function App() {
   const admin = document.cookie.includes("admin");
@@ -38,14 +38,17 @@ function App() {
               <Route path="/registration">
                 <Registration />
               </Route>
-              <Route path="/admin/goodslist">
+              <Route exact path="/admin/goodslist">
                 {admin ? <AdminGoodsList /> : <Redirect to="/" />}
               </Route>
-              <Route path="/admin/applicationlist">
+              <Route exact path="/admin/applicationlist">
                 <AdminApplicationList />
               </Route>
               <Route path="/profile">
                 {agent ? <ProfilePage /> : <Redirect to="/" />}
+              </Route>
+              <Route path="/success">
+                {agent ? <Success /> : <Redirect to="/" />}
               </Route>
               <Route path="/cart">
                 {agent ? <Cart /> : <Redirect to="/" />}
@@ -53,7 +56,6 @@ function App() {
               <Route path="/login">
                 {agent || admin ? <Redirect to="/" /> : <Login />}
               </Route>
-              <Route path="/logout">{/* <Home /> */}</Route>
 
               <Route path="/goods">
                 {agent ? <Goods /> : <Redirect to="/" />}
@@ -65,10 +67,12 @@ function App() {
               <Route exact path="/admin/application/:id">
                 <ApplicationInfo />
               </Route>
-              <Route path="/admin/application/edit/:id">
+              <Route exact path="/admin/application/edit/:id">
                 <ApplicationEdit />
               </Route>
-              <Route path="/">{/* <Home /> */}</Route>
+              <Route exact path="/">
+                 <Home />
+              </Route>
             </Switch>
 
             {/* END ROUTES CONTENT AREA */}

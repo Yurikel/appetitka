@@ -7,7 +7,7 @@ function Login() {
     const login = event.target.login.value;
     const password = event.target.password.value;
 
-    const preResult = await fetch("http://localhost:4000/login", {
+    const preResult = await fetch("/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -20,9 +20,9 @@ function Login() {
       document.cookie='admin=admin'
       document.location.href = "/";
     } else if (result.message) {
-      alert(result.message);
+      console.log(result.message)
     } else {
-      document.location.href = "/profile";
+      document.location.href='/profile'
     }
   };
 

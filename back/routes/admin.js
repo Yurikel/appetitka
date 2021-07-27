@@ -8,12 +8,20 @@ router.get("/goodslist", async (req, res) => {
     res.status(200).json({ goods });
 });
 router.get("/applications", async (req, res) => {
-    const applications = await Applications.find({});
+    const applications = await Applications.find({}).populate('goods.good').populate('buyer')
     res.status(200).json({ applications });
 });
 router.put("/application/:id", async (req, res) => {
+  if (req.body.goods){
+    await Applications.findOneAndUpdate({regnumber:req.params.id}, { $set: {isready: "Готовится к отгрузке", goods:req.body.goods}});
+  } else {
     await Applications.findOneAndUpdate({regnumber:req.params.id}, { $set: {isready: "Готовится к отгрузке"}});
-    res.status(200).json({ message: `Заявка № ${req.params.id} отправлена на склад`});
+  }
+  res.status(200).json({ message: `Заявка № ${req.params.id} отправлена на склад`});
+});
+router.delete("/application/:id", async (req, res) => {
+  await Applications.findOneAndDelete({regnumber:req.params.id});
+  res.status(200).json({ message: `Заявка № ${req.params.id} удалена`});
 });
 router.get("/agents", async (req, res) => {
     const agents = await Agents.find({});

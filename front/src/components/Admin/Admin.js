@@ -1,23 +1,21 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { initAgentsAC, requestGoodsAC } from '../../utils/redux/actionCreators';
 
 function Admin() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    fetch('http://localhost:4000/admin/agents')
-      .then(response => response.json())
-      .then(agents => dispatch(initAgentsAC(agents.agents)))
-      fetch('http://localhost:4000/admin/goodslist')
-      .then(response => response.json())
-      .then(goods => dispatch(requestGoodsAC(goods.goods)))
-  }, [dispatch])
+  
+  
   return (
+    <>
+    <strong>
+    Система обработки и регистрации заказов.
+    <br />
+    ООО "Аппетиткино", торговая марка "Солёнушка".
+  </strong>
     <div>
      <div><Link to='/admin/goodsList' >Список товаров</Link></div>
       <Link to='/admin/applicationList' >Список заявок</Link>
     </div>
+    </>
   );
 }
 

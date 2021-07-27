@@ -19,7 +19,9 @@ const applicationSchema = mongoose.Schema({
   regnumber: {
     type: Number,
   },
-  date:{type: Date}
+  date:{type: Date},
+  comment: String,
+
 });
 
 

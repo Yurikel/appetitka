@@ -11,7 +11,7 @@ function Registration() {
     const email = event.target.email.value;
     const login = event.target.login.value;
 
-    const preResult = await fetch("http://localhost:4000/reg", {
+    const preResult = await fetch("/reg", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,7 +22,7 @@ function Registration() {
     const result = await preResult.json()
     
     if(result.message) {
-      alert(result.message)
+     console.log(result.message)
     }
     else {
      document.location.href = '/profile'
@@ -58,7 +58,7 @@ function Registration() {
           <label>Пароль:</label>
           <input required type="password" name="password" />
         </div>
-        <div>
+        <div style={{marginTop: "1em"}}>
           <input type="submit" value="Зарегистрировать" />
         </div>
       </form>

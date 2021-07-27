@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import {
   addGoodsToCartAC,
   delGoodsFromCartAC,
@@ -8,14 +8,19 @@ import {
 } from "../../utils/redux/actionCreators";
 
 export default function Good({ el }) {
+  const{id} = useParams();
   const dispatch = useDispatch();
   const goodsNumberInput = useRef();
   const location = useLocation();
-
-  const itemInCart = useSelector((state) =>
-    state.agentReducer.cart.find((good) => good.title === el.title)
-  );
-
+  const cart = useSelector((state) =>state.agentReducer.cart)
+  let itemInCart;
+  if (cart.length && el) {
+    itemInCart = cart.find((good) => good.title === el.title)
+  }
+  // const itemInCart = useSelector((state) =>
+  //   state.agentReducer.cart.find((good) => good.title === el.title)
+  // );
+  
   const handlerAddToCart = () => {
     dispatch(addGoodsToCartAC({ title: el.title, value: 1,  good:el._id}));
   };
@@ -25,6 +30,9 @@ export default function Good({ el }) {
   };
 
   const handlerMinus = () => {
+    if (cart.length === 1 && +goodsNumberInput.current.value === 1) {
+      localStorage.cart = JSON.stringify([])
+    }
     if (+goodsNumberInput.current.value === 1) {
       dispatch(delGoodsFromCartAC(el.title));
     } else {
@@ -59,11 +67,11 @@ export default function Good({ el }) {
 
   return (
     <div className="goodsbox">
-      <div>
+      {(cart.length && location.pathname === "/cart" && el) || location.pathname === "/goods" || location.pathname === `/admin/application/edit/${id}` ?  <><div>
         <h5>{el.title}</h5>
         <span>Цена: ₽{el.price || itemInCart.price}</span>
       </div>
-      <div className="goodsboximage"></div>
+      <div style={{overflow:"hidden", position:"relative", alignItems:"center", justifyContent:"center"}} className="goodsboximage">{el.image.length ? <img alt='' style={{position: "absolute",  width: "265px"}} src={el.image}></img>: <img alt='' style={{position: "absolute",  width: "265px", height:"120px"}} src="/images/1.png"></img>}</div>
       <div>
         <div className="inline">
           {itemInCart ? (
@@ -100,7 +108,8 @@ export default function Good({ el }) {
             </button>
           </div>
         )}
-      </div>
+      </div> </> :<></>}
+      
     </div>
   );
 }

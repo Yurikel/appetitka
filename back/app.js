@@ -8,24 +8,23 @@ const cors = require("cors");
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const MongoStore = require('connect-mongo');
-const morgan = require('morgan')
-
+const dotenv = require("dotenv");
+dotenv.config();
 
 
 const app = express();
 connect()
-app.use(morgan('dev'))
 app.use(cors({
   origin: true,
   credentials: true,
 }));
 app.use(cookieParser())
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.resolve('../front/build/')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(session({
-  store: MongoStore.create({mongoUrl: 'mongodb://localhost:27017/final_project'}),
+  store: MongoStore.create({mongoUrl: `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.eqypr.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`}),
   key: 'user',
   secret: 'anything',
   resave: false,
@@ -41,6 +40,8 @@ app.use(session({
 app.use("/", mainRote);
 app.use("/admin", adminRote);
 app.use("/agent", agentRoute);
-
+app.use('*' , (req, res) => {
+  res.sendFile(path.resolve('../front/build/index.html'))
+})
 
 module.exports = app

@@ -4,14 +4,11 @@ import Navbar from "../../Navbar/Navbar";
 function SideBar() {
   return (
     <div id="sidebar">
-      <div className="inner">
-        <header>
-          <span className="left">
-          <a href="/"><img className="logo_sol" src="/images/logo_sol1.png" alt="" /></a>
-          </span>
+      <div className="inner sidemenu">
+        <div className='logoandmenu'>
+          <a href="/"><img src="/images/logo_sol1.png" alt="" /></a>
           <h4>Торговая марка «Солёнушка»</h4>
-          Система формирования заказов
-        </header>
+          <div className="subtitle">Система формирования заказов</div>
         {/* <section id="search" className="alt">
           <form method="post" action="#">
             <input type="text" name="query" id="query" placeholder="Search" />
@@ -19,20 +16,21 @@ function SideBar() {
         </section> */}
 
         <Navbar />
+        </div>
 
         {/* <header class="major">
           <h3>Информация для связи</h3>
         </header> */}
-
-        <section>
+        <div>
+        <section className="sidecontacts logoandmenu">
           <ul className="contact">
             <li className="icon solid fa-envelope">
-              <a href="/">info@solenushka.ru</a>
+              <a href="mailto:info@solenushka.ru">info@solenushka.ru</a>
             </li>
             <li className="icon solid fa-phone">
-              +7 (4012) 640-707
+              <a href="tel:+74012640707">+7 (4012) 640-707</ a>
               <br />
-              +7 (4012) 640-202
+              <a href="tel:+74012640202">+7 (4012) 640-202</ a>
             </li>
             <li className="icon solid fa-home">
               238651, Калининградская область, Полесский район, <br />
@@ -41,6 +39,7 @@ function SideBar() {
             </li>
           </ul>
         </section>
+        </div>
 
         {/* <footer id="footer">
           <p className="copyright">

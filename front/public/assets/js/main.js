@@ -94,6 +94,7 @@
 				.on('click', function(event) {
 
 					// Prevent default.
+          console.log('1')
 						event.preventDefault();
 						event.stopPropagation();
 
@@ -117,8 +118,9 @@
 							target = $a.attr('target');
 
 					// Prevent default.
+          console.log('2')
 						event.preventDefault();
-						event.stopPropagation();
+					// 	event.stopPropagation();
 
 					// Check URL.
 						if (!href || href == '#' || href == '')
@@ -147,7 +149,8 @@
 							return;
 
 					// Prevent propagation.
-						event.stopPropagation();
+          console.log('3')
+						// event.stopPropagation();
 
 				});
 
@@ -159,7 +162,7 @@
 							return;
 
 					// Deactivate.
-						$sidebar.addClass('inactive');
+						// $sidebar.addClass('inactive');
 
 				});
 
@@ -202,12 +205,11 @@
 								if (y <= 0)
 									$sidebar_inner
 										.data('locked', 0)
-										.css('position', '')
+                    .css('position', 'fixed')
 										.css('top', '');
-								else
-									$sidebar_inner
-										.css('top', -1 * x);
-
+								// else
+									// $sidebar_inner
+										// .css('top', -1 * x);
 							}
 							else {
 
@@ -215,7 +217,7 @@
 									$sidebar_inner
 										.data('locked', 1)
 										.css('position', 'fixed')
-										.css('top', -1 * x);
+										// .css('top', -1 * x);
 
 							}
 

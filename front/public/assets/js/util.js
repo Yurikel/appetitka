@@ -109,7 +109,7 @@
 
 					// If an event was provided, cancel it.
 						if (event) {
-
+              console.log('4')
 							event.preventDefault();
 							event.stopPropagation();
 
@@ -157,6 +157,7 @@
 								return;
 
 							// Cancel original event.
+              console.log('5')
 								event.preventDefault();
 								event.stopPropagation();
 
@@ -241,7 +242,7 @@
 					// Prevent vertical scrolling past the top or bottom.
 						if (($this.scrollTop() < 0 && diffY < 0)
 						|| (ts > (th - 2) && ts < (th + 2) && diffY > 0)) {
-
+              console.log('6')
 							event.preventDefault();
 							event.stopPropagation();
 
@@ -251,12 +252,13 @@
 
 			// Event: Prevent certain events inside the panel from bubbling.
 				$this.on('click touchend touchstart touchmove', function(event) {
+          console.log('7')
 					event.stopPropagation();
 				});
 
 			// Event: Hide panel if a child anchor tag pointing to its ID is clicked.
 				$this.on('click', 'a[href="#' + id + '"]', function(event) {
-
+          console.log('8')
 					event.preventDefault();
 					event.stopPropagation();
 
@@ -273,7 +275,7 @@
 
 			// Event: Toggle.
 				$body.on('click', 'a[href="#' + id + '"]', function(event) {
-
+          console.log('9')
 					event.preventDefault();
 					event.stopPropagation();
 
