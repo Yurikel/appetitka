@@ -2,7 +2,7 @@ Multiservice web application for leading regional food production company, with 
 
 Frontend: HTML, CSS, React, Redux, PWA.
 
-Backend: Node-JS, Express, MongoDB, Mongoose.
+Backend: Node.JS, Express, MongoDB, Mongoose.
 
 http://appetitka.herokuapp.com/
 
